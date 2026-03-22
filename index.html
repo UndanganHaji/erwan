@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Undangan Haji</title>
+<title>Undangan Syukuran Haji</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -14,24 +14,12 @@
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
-/* BREAK OUT DARI MYBIOLINK */
 html, body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#000;
   font-family:Poppins,sans-serif;
-}
-
-/* INI KUNCI UTAMA */
-body{
-  position:fixed;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100vw;
-  height:100dvh;
-  overflow:hidden;
+  background:#000;
 }
 
 /* OPENING */
@@ -45,7 +33,6 @@ body{
   text-align:center;
   z-index:9999;
 }
-
 #opening::after{
   content:'';
   position:absolute;
@@ -56,16 +43,12 @@ body{
 .open-box{
   position:relative;
   z-index:2;
-}
-
-.open-box h1{
   color:#fff;
+}
+.open-box h1{
   font-family:'Playfair Display';
   font-size:32px;
 }
-
-.open-box p{color:#fff;}
-
 .btn{
   margin-top:20px;
   padding:14px 30px;
@@ -75,26 +58,23 @@ body{
   font-weight:bold;
 }
 
-/* SWIPER FULL */
+/* SWIPER */
 .swiper, .swiper-wrapper, .swiper-slide{
-  width:100vw;
+  width:100%;
   height:100dvh;
 }
 
 .swiper-slide{
-  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
+  position:relative;
 }
 
-/* BG ANTI BOCOR */
+/* BG */
 .bg{
-  position:fixed;
-  top:-10%;
-  left:-10%;
-  width:120vw;
-  height:120dvh;
+  position:absolute;
+  inset:0;
   background-size:cover;
   background-position:center;
   filter:brightness(.35);
@@ -105,79 +85,47 @@ body{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.95) 30%,
-    rgba(0,0,0,.6) 70%,
-    transparent
-  );
+  background:linear-gradient(to top, rgba(0,0,0,.95), transparent);
 }
 
 /* CONTENT */
 .content{
   position:relative;
   z-index:2;
-  width:100%;
-  height:100%;
   padding:20px;
-  padding-bottom:120px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  align-items:center;
   text-align:center;
+  max-width:500px;
 }
-
-/* TEKS JELAS */
 .content span{
+  display:block;
   color:#fff;
-  font-size:20px;
-  text-shadow:
-    0 2px 6px rgba(0,0,0,.9),
-    0 0 10px rgba(0,0,0,.8);
+  margin:6px 0;
 }
-
-.content span:nth-child(2){
+.content .title{
   font-size:26px;
-  font-weight:bold;
+  font-weight:600;
+}
+.content .big{
+  font-size:30px;
+  font-family:'Playfair Display';
 }
 
 /* NAV */
 .nav{
   position:fixed;
   bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100vw;
-  height:70px;
+  width:100%;
+  height:65px;
   background:rgba(0,0,0,.9);
   display:flex;
   justify-content:space-around;
   align-items:center;
-  z-index:999;
 }
-
 .nav a{
   color:#aaa;
-  text-decoration:none;
   font-size:12px;
 }
-
 .nav a.active{color:gold;}
-
-/* ANIMASI */
-.fade span{
-  opacity:0;
-  transform:translateY(30px);
-  animation:fadeUp .8s forwards;
-}
-.fade span:nth-child(1){animation-delay:.3s}
-.fade span:nth-child(2){animation-delay:.6s}
-.fade span:nth-child(3){animation-delay:.9s}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0)}
-}
 
 </style>
 </head>
@@ -201,36 +149,68 @@ body{
 <div class="swiper">
 <div class="swiper-wrapper">
 
+<!-- SLIDE 1 -->
 <div class="swiper-slide">
 <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1564769625392-651b2a0b3d7f')"></div>
-<div class="content fade">
-<span>Assalamu’alaikum</span>
-<span>Dengan penuh syukur</span>
-<span>Kami mengundang Anda</span>
+<div class="content">
+<span class="title">Assalamu’alaikum</span>
+<span>Dengan penuh rasa syukur kepada Allah SWT</span>
+<span>Kami mengundang Bapak/Ibu/Saudara/i</span>
+<span>Untuk hadir dalam acara syukuran haji kami</span>
 </div>
 </div>
 
+<!-- SLIDE 2 -->
 <div class="swiper-slide">
 <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe')"></div>
-<div class="content fade">
-<span>Tuan Rumah</span>
-<span>Bapak & Ibu Ahmad</span>
+<div class="content">
+<span class="title">Tasyakuran Haji</span>
+<span class="big">Bapak Ahmad</span>
+<span>&</span>
+<span class="big">Ibu Ahmad</span>
+<span>Atas limpahan rahmat Allah SWT</span>
 </div>
 </div>
 
+<!-- SLIDE 3 -->
 <div class="swiper-slide">
 <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f')"></div>
-<div class="content fade">
-<span>10 Oktober 2026</span>
-<span>10.00 WITA</span>
-<span>Denpasar</span>
+<div class="content">
+<span class="title">Alhamdulillah</span>
+<span>Telah kami tunaikan rukun Islam kelima</span>
+<span>Semoga menjadi haji yang mabrur</span>
+<span>Kami ingin berbagi kebahagiaan ini</span>
 </div>
 </div>
 
+<!-- SLIDE 4 -->
 <div class="swiper-slide">
 <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458')"></div>
-<div class="content fade">
-<span>Konfirmasi Kehadiran</span>
+<div class="content">
+<span class="title">Detail Acara</span>
+<span>Sabtu, 10 Oktober 2026</span>
+<span>10.00 WITA</span>
+<span>Denpasar</span>
+<button class="btn" onclick="maps()">Lihat Lokasi</button>
+</div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="swiper-slide">
+<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee')"></div>
+<div class="content">
+<span>Merupakan kehormatan bagi kami</span>
+<span>apabila Bapak/Ibu berkenan hadir</span>
+<span>Atas doa dan kehadirannya</span>
+<span>Kami ucapkan terima kasih</span>
+</div>
+</div>
+
+<!-- SLIDE 6 -->
+<div class="swiper-slide">
+<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff')"></div>
+<div class="content">
+<span class="title">Konfirmasi Kehadiran</span>
 <button class="btn" onclick="wa()">WhatsApp</button>
 </div>
 </div>
@@ -241,23 +221,30 @@ body{
 <div class="nav">
 <a onclick="go(0)" class="active">Home</a>
 <a onclick="go(1)">Tuan</a>
-<a onclick="go(2)">Acara</a>
-<a onclick="go(3)">RSVP</a>
+<a onclick="go(2)">Syukur</a>
+<a onclick="go(3)">Acara</a>
+<a onclick="go(5)">RSVP</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+
 const p=new URLSearchParams(window.location.search)
 document.getElementById('nama').innerText=p.get('to')||'Tamu Undangan'
 
 function buka(){
 document.getElementById('opening').style.display='none'
-document.getElementById('musik').play().catch(()=>{})
+const audio=document.getElementById('musik')
+audio.play().catch(()=>{})
 }
 
 function wa(){
 window.open('https://wa.me/6281234567890')
+}
+
+function maps(){
+window.open('https://maps.google.com')
 }
 
 const swiper=new Swiper('.swiper',{
@@ -274,6 +261,7 @@ document.querySelectorAll('.nav a').forEach((el,idx)=>{
 el.classList.toggle('active',idx===i)
 })
 }
+
 </script>
 
 </body>
