@@ -6,260 +6,125 @@
 
 <title>Undangan Syukuran Haji</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
-html, body{
+html,body{
   width:100%;
   height:100%;
-  overflow:hidden;
   font-family:Poppins,sans-serif;
-  background:#000;
 }
 
-/* OPENING */
-#opening{
-  position:fixed;
-  inset:0;
-  background:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f') center/cover no-repeat;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  z-index:9999;
-}
-#opening::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.7);
-}
-
-.open-box{
+/* BACKGROUND */
+.hero{
   position:relative;
-  z-index:2;
-  color:#fff;
-}
-.open-box h1{
-  font-family:'Playfair Display';
-  font-size:32px;
-}
-.btn{
-  margin-top:20px;
-  padding:14px 30px;
-  border:none;
-  border-radius:40px;
-  background:gold;
-  font-weight:bold;
-}
-
-/* SWIPER */
-.swiper, .swiper-wrapper, .swiper-slide{
   width:100%;
-  height:100dvh;
-}
-
-.swiper-slide{
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff') center/cover no-repeat;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
 }
 
-/* BG */
-.bg{
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  filter:brightness(.35);
-}
-
-/* OVERLAY */
-.swiper-slide::after{
+/* OVERLAY GELAP */
+.hero::after{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.95), transparent);
+  background:linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.8));
 }
 
-/* CONTENT */
-.content{
+/* CARD */
+.card{
   position:relative;
   z-index:2;
-  padding:20px;
-  text-align:center;
-  max-width:500px;
-}
-.content span{
-  display:block;
+  width:90%;
+  max-width:400px;
+  padding:25px;
+  border-radius:20px;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
   color:#fff;
-  margin:6px 0;
-}
-.content .title{
-  font-size:26px;
-  font-weight:600;
-}
-.content .big{
-  font-size:30px;
-  font-family:'Playfair Display';
+  text-align:center;
 }
 
-/* NAV */
-.nav{
-  position:fixed;
+/* TEXT */
+.small{
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+.nama{
+  font-family:'Great Vibes', cursive;
+  font-size:36px;
+  margin:10px 0;
+}
+
+.garis{
+  margin:15px 0;
+  border-top:1px solid rgba(255,255,255,.4);
+}
+
+.tamu{
+  font-size:14px;
+  opacity:.8;
+}
+
+.nama-tamu{
+  font-size:18px;
+  font-weight:500;
+}
+
+/* TOMBOL */
+.btn-buka{
+  position:absolute;
   bottom:0;
+  left:0;
   width:100%;
-  height:65px;
-  background:rgba(0,0,0,.9);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
+  padding:18px;
+  border:none;
+  background:#eee;
+  font-size:16px;
+  cursor:pointer;
 }
-.nav a{
-  color:#aaa;
-  font-size:12px;
-}
-.nav a.active{color:gold;}
 
 </style>
 </head>
 
 <body>
 
-<!-- OPENING -->
-<div id="opening">
-  <div class="open-box">
-    <p>Undangan Syukuran Haji</p>
-    <h1>Bapak & Ibu Ahmad</h1>
-    <p id="nama"></p>
-    <button class="btn" onclick="buka()">Buka Undangan</button>
+<div class="hero">
+
+  <div class="card">
+    <div class="small">UNDANGAN SYUKURAN HAJI</div>
+
+    <div class="nama">Bapak Ahmad<br>& Ibu Ahmad</div>
+
+    <div class="garis"></div>
+
+    <div class="tamu">Kepada Yth.</div>
+    <div class="nama-tamu" id="nama">Tamu Undangan</div>
   </div>
-</div>
 
-<audio id="musik" loop>
-<source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
-</audio>
-
-<div class="swiper">
-<div class="swiper-wrapper">
-
-<!-- SLIDE 1 -->
-<div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1564769625392-651b2a0b3d7f')"></div>
-<div class="content">
-<span class="title">Assalamu’alaikum</span>
-<span>Dengan penuh rasa syukur kepada Allah SWT</span>
-<span>Kami mengundang Bapak/Ibu/Saudara/i</span>
-<span>Untuk hadir dalam acara syukuran haji kami</span>
-</div>
-</div>
-
-<!-- SLIDE 2 -->
-<div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe')"></div>
-<div class="content">
-<span class="title">Tasyakuran Haji</span>
-<span class="big">Bapak Ahmad</span>
-<span>&</span>
-<span class="big">Ibu Ahmad</span>
-<span>Atas limpahan rahmat Allah SWT</span>
-</div>
-</div>
-
-<!-- SLIDE 3 -->
-<div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f')"></div>
-<div class="content">
-<span class="title">Alhamdulillah</span>
-<span>Telah kami tunaikan rukun Islam kelima</span>
-<span>Semoga menjadi haji yang mabrur</span>
-<span>Kami ingin berbagi kebahagiaan ini</span>
-</div>
-</div>
-
-<!-- SLIDE 4 -->
-<div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458')"></div>
-<div class="content">
-<span class="title">Detail Acara</span>
-<span>Sabtu, 10 Oktober 2026</span>
-<span>10.00 WITA</span>
-<span>Denpasar</span>
-<button class="btn" onclick="maps()">Lihat Lokasi</button>
-</div>
-</div>
-
-<!-- SLIDE 5 -->
-<div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee')"></div>
-<div class="content">
-<span>Merupakan kehormatan bagi kami</span>
-<span>apabila Bapak/Ibu berkenan hadir</span>
-<span>Atas doa dan kehadirannya</span>
-<span>Kami ucapkan terima kasih</span>
-</div>
-</div>
-
-<!-- SLIDE 6 -->
-<div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff')"></div>
-<div class="content">
-<span class="title">Konfirmasi Kehadiran</span>
-<button class="btn" onclick="wa()">WhatsApp</button>
-</div>
-</div>
+  <button class="btn-buka" onclick="buka()">📩 Buka Undangan</button>
 
 </div>
-</div>
-
-<div class="nav">
-<a onclick="go(0)" class="active">Home</a>
-<a onclick="go(1)">Tuan</a>
-<a onclick="go(2)">Syukur</a>
-<a onclick="go(3)">Acara</a>
-<a onclick="go(5)">RSVP</a>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
 
-const p=new URLSearchParams(window.location.search)
-document.getElementById('nama').innerText=p.get('to')||'Tamu Undangan'
+/* AMBIL NAMA TAMU DARI LINK */
+const p = new URLSearchParams(window.location.search)
+document.getElementById('nama').innerText = p.get('to') || 'Tamu Undangan'
 
 function buka(){
-document.getElementById('opening').style.display='none'
-const audio=document.getElementById('musik')
-audio.play().catch(()=>{})
-}
-
-function wa(){
-window.open('https://wa.me/6281234567890')
-}
-
-function maps(){
-window.open('https://maps.google.com')
-}
-
-const swiper=new Swiper('.swiper',{
-direction:'vertical',
-speed:900,
-mousewheel:true,
-on:{slideChange:function(){setActive(this.activeIndex)}}
-})
-
-function go(i){swiper.slideTo(i)}
-
-function setActive(i){
-document.querySelectorAll('.nav a').forEach((el,idx)=>{
-el.classList.toggle('active',idx===i)
-})
+  alert("Masuk ke halaman undangan berikutnya 🔥")
+  // nanti bisa diarahkan ke halaman swiper kamu
+  // contoh:
+  // window.location.href = "home.html"
 }
 
 </script>
