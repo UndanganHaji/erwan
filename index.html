@@ -323,7 +323,14 @@ document.getElementById('nama').innerText =
 /* OPENING */
 function buka(){
   const musik = document.getElementById('musik')
-  document.getElementById('opening').style.display='none'
+  const opening = document.getElementById('opening')
+
+  opening.style.opacity = '0'
+  opening.style.transition = '1s'
+
+  setTimeout(()=>{
+    opening.style.display='none'
+  },1000)
 
   musik.muted=false
   musik.play().catch(()=>{})
