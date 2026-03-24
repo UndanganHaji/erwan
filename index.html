@@ -4,92 +4,179 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Undangan Syukuran Haji</title>
+<title>Undangan Haji</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 <style>
 
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
-html,body{
+/* BREAK OUT DARI MYBIOLINK */
+html, body{
   width:100%;
   height:100%;
+  overflow:hidden;
+  background:#000;
   font-family:Poppins,sans-serif;
 }
 
-/* BACKGROUND */
-.hero{
+/* INI KUNCI UTAMA */
+body{
+  position:fixed;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100vw;
+  height:100dvh;
+  overflow:hidden;
+}
+
+/* OPENING */
+#opening{
+  position:fixed;
+  inset:0;
+  background:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:9999;
+}
+
+#opening::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.7);
+}
+
+.open-box{
   position:relative;
-  width:100%;
-  height:100vh;
-  background:url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff') center/cover no-repeat;
+  z-index:2;
+}
+
+.open-box h1{
+  color:#fff;
+  font-family:'Playfair Display';
+  font-size:32px;
+}
+
+.open-box p{color:#fff;}
+
+.btn{
+  margin-top:20px;
+  padding:14px 30px;
+  border:none;
+  border-radius:40px;
+  background:gold;
+  font-weight:bold;
+}
+
+/* SWIPER FULL */
+.swiper, .swiper-wrapper, .swiper-slide{
+  width:100vw;
+  height:100dvh;
+}
+
+.swiper-slide{
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-/* OVERLAY GELAP */
-.hero::after{
+/* BG ANTI BOCOR */
+.bg{
+  position:fixed;
+  top:-10%;
+  left:-10%;
+  width:120vw;
+  height:120dvh;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(.35);
+}
+
+/* OVERLAY */
+.swiper-slide::after{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.8));
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.95) 30%,
+    rgba(0,0,0,.6) 70%,
+    transparent
+  );
 }
 
-/* CARD */
-.card{
+/* CONTENT */
+.content{
   position:relative;
   z-index:2;
-  width:90%;
-  max-width:400px;
-  padding:25px;
-  border-radius:20px;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(10px);
-  color:#fff;
+  width:100%;
+  height:100%;
+  padding:20px;
+  padding-bottom:120px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
   text-align:center;
 }
 
-/* TEXT */
-.small{
-  font-size:14px;
-  letter-spacing:2px;
+/* TEKS JELAS */
+.content span{
+  color:#fff;
+  font-size:20px;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.9),
+    0 0 10px rgba(0,0,0,.8);
 }
 
-.nama{
-  font-family:'Great Vibes', cursive;
-  font-size:36px;
-  margin:10px 0;
+.content span:nth-child(2){
+  font-size:26px;
+  font-weight:bold;
 }
 
-.garis{
-  margin:15px 0;
-  border-top:1px solid rgba(255,255,255,.4);
-}
-
-.tamu{
-  font-size:14px;
-  opacity:.8;
-}
-
-.nama-tamu{
-  font-size:18px;
-  font-weight:500;
-}
-
-/* TOMBOL */
-.btn-buka{
-  position:absolute;
+/* NAV */
+.nav{
+  position:fixed;
   bottom:0;
-  left:0;
-  width:100%;
-  padding:18px;
-  border:none;
-  background:#eee;
-  font-size:16px;
-  cursor:pointer;
+  left:50%;
+  transform:translateX(-50%);
+  width:100vw;
+  height:70px;
+  background:rgba(0,0,0,.9);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:999;
+}
+
+.nav a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:12px;
+}
+
+.nav a.active{color:gold;}
+
+/* ANIMASI */
+.fade span{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp .8s forwards;
+}
+.fade span:nth-child(1){animation-delay:.3s}
+.fade span:nth-child(2){animation-delay:.6s}
+.fade span:nth-child(3){animation-delay:.9s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
 }
 
 </style>
@@ -97,36 +184,96 @@ html,body{
 
 <body>
 
-<div class="hero">
-
-  <div class="card">
-    <div class="small">UNDANGAN SYUKURAN HAJI</div>
-
-    <div class="nama">Bapak Ahmad<br>& Ibu Ahmad</div>
-
-    <div class="garis"></div>
-
-    <div class="tamu">Kepada Yth.</div>
-    <div class="nama-tamu" id="nama">Tamu Undangan</div>
+<!-- OPENING -->
+<div id="opening">
+  <div class="open-box">
+    <p>Undangan Syukuran Haji</p>
+    <h1>Bapak & Ibu Ahmad</h1>
+    <p id="nama"></p>
+    <button class="btn" onclick="buka()">Buka Undangan</button>
   </div>
-
-  <button class="btn-buka" onclick="buka()">📩 Buka Undangan</button>
-
 </div>
 
-<script>
+<audio id="musik" loop>
+<source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
+</audio>
 
-/* AMBIL NAMA TAMU DARI LINK */
-const p = new URLSearchParams(window.location.search)
-document.getElementById('nama').innerText = p.get('to') || 'Tamu Undangan'
+<div class="swiper">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1564769625392-651b2a0b3d7f')"></div>
+<div class="content fade">
+<span>Assalamu’alaikum</span>
+<span>Dengan penuh syukur</span>
+<span>Kami mengundang Anda</span>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe')"></div>
+<div class="content fade">
+<span>Tuan Rumah</span>
+<span>Bapak & Ibu Ahmad</span>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f')"></div>
+<div class="content fade">
+<span>10 Oktober 2026</span>
+<span>10.00 WITA</span>
+<span>Denpasar</span>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458')"></div>
+<div class="content fade">
+<span>Konfirmasi Kehadiran</span>
+<button class="btn" onclick="wa()">WhatsApp</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="nav">
+<a onclick="go(0)" class="active">Home</a>
+<a onclick="go(1)">Tuan</a>
+<a onclick="go(2)">Acara</a>
+<a onclick="go(3)">RSVP</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const p=new URLSearchParams(window.location.search)
+document.getElementById('nama').innerText=p.get('to')||'Tamu Undangan'
 
 function buka(){
-  alert("Masuk ke halaman undangan berikutnya 🔥")
-  // nanti bisa diarahkan ke halaman swiper kamu
-  // contoh:
-  // window.location.href = "home.html"
+document.getElementById('opening').style.display='none'
+document.getElementById('musik').play().catch(()=>{})
 }
 
+function wa(){
+window.open('https://wa.me/6281234567890')
+}
+
+const swiper=new Swiper('.swiper',{
+direction:'vertical',
+speed:900,
+mousewheel:true,
+on:{slideChange:function(){setActive(this.activeIndex)}}
+})
+
+function go(i){swiper.slideTo(i)}
+
+function setActive(i){
+document.querySelectorAll('.nav a').forEach((el,idx)=>{
+el.classList.toggle('active',idx===i)
+})
+}
 </script>
 
 </body>
