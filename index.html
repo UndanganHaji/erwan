@@ -37,36 +37,77 @@ body{
   align-items:center;
   text-align:center;
   z-index:9999;
+  animation:fadeIn 1.5s ease;
 }
 
-#opening::after{
-  content:'';
+.overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(4px);
 }
 
 .open-box{
   position:relative;
   z-index:2;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(10px);
+  animation:zoomIn 1.2s ease;
+}
+
+.small{
+  color:#ccc;
+  font-size:14px;
+  letter-spacing:2px;
+  margin-bottom:10px;
 }
 
 .open-box h1{
   color:#fff;
   font-family:'Playfair Display';
   font-size:32px;
+  margin-bottom:15px;
 }
 
-.open-box p{color:#fff;}
+.kepada{
+  color:#bbb;
+  margin-top:10px;
+}
 
+.nama-tamu{
+  color:gold;
+  font-size:20px;
+  font-weight:bold;
+  margin-top:5px;
+}
+
+/* BUTTON UPGRADE */
 .btn{
-  margin-top:20px;
-  padding:14px 30px;
+  margin-top:25px;
+  padding:14px 35px;
   border:none;
   border-radius:40px;
-  background:gold;
+  background:linear-gradient(45deg,gold,#ffd700);
   font-weight:bold;
-  cursor:pointer;
+  box-shadow:0 5px 20px rgba(255,215,0,.4);
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* ANIMASI */
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes zoomIn{
+  from{opacity:0; transform:scale(.8)}
+  to{opacity:1; transform:scale(1)}
 }
 
 /* SWIPER */
