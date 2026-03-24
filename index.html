@@ -33,13 +33,13 @@ body{
   inset:0;
   background:url('bg.jpg') center/cover no-repeat;
   display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+  flex-direction:column;
+  justify-content:space-between;
   z-index:9999;
   animation:fadeIn 1.5s ease;
 }
 
+/* OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
@@ -47,14 +47,12 @@ body{
   backdrop-filter:blur(4px);
 }
 
-.open-box{
+/* TEKS ATAS */
+.top-text{
   position:relative;
   z-index:2;
-  padding:30px;
-  border-radius:20px;
-  background:rgba(0,0,0,.4);
-  backdrop-filter:blur(10px);
-  animation:zoomIn 1.2s ease;
+  text-align:center;
+  margin-top:80px;
 }
 
 .small{
@@ -64,39 +62,46 @@ body{
   margin-bottom:10px;
 }
 
-.open-box h1{
+.top-text h1{
   color:#fff;
   font-family:'Playfair Display';
   font-size:32px;
-  margin-bottom:15px;
+}
+
+/* BOX BAWAH */
+.guest-box{
+  position:relative;
+  z-index:2;
+  margin:20px;
+  margin-bottom:40px;
+  padding:25px;
+  border-radius:20px;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(10px);
+  text-align:center;
+  animation:slideUp 1.2s ease;
 }
 
 .kepada{
   color:#bbb;
-  margin-top:10px;
 }
 
 .nama-tamu{
   color:gold;
   font-size:20px;
   font-weight:bold;
-  margin-top:5px;
+  margin:10px 0;
 }
 
-/* BUTTON UPGRADE */
+/* BUTTON */
 .btn{
-  margin-top:25px;
+  margin-top:15px;
   padding:14px 35px;
   border:none;
   border-radius:40px;
   background:linear-gradient(45deg,gold,#ffd700);
   font-weight:bold;
   box-shadow:0 5px 20px rgba(255,215,0,.4);
-  transition:.3s;
-}
-
-.btn:hover{
-  transform:scale(1.05);
 }
 
 /* ANIMASI */
@@ -105,9 +110,9 @@ body{
   to{opacity:1}
 }
 
-@keyframes zoomIn{
-  from{opacity:0; transform:scale(.8)}
-  to{opacity:1; transform:scale(1)}
+@keyframes slideUp{
+  from{opacity:0; transform:translateY(50px)}
+  to{opacity:1; transform:translateY(0)}
 }
 
 /* SWIPER */
@@ -246,18 +251,23 @@ body{
 
 <!-- OPENING -->
 <div id="opening">
+
   <div class="overlay"></div>
 
-  <div class="open-box">
+  <!-- ATAS (TANPA BOX) -->
+  <div class="top-text">
     <p class="small">Undangan Tasyakuran Haji</p>
-
     <h1>Bapak & Ibu Ahmad</h1>
+  </div>
 
+  <!-- BAWAH (BOX NAMA TAMU) -->
+  <div class="guest-box">
     <p class="kepada">Kepada Yth:</p>
     <p id="nama" class="nama-tamu"></p>
 
     <button class="btn" onclick="buka()">Buka Undangan</button>
   </div>
+
 </div>
 
 <!-- AUDIO -->
