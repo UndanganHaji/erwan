@@ -246,7 +246,7 @@ body{
 
   <!-- BAWAH (BOX NAMA TAMU) -->
   <div class="guest-box">
-    <p class="kepada">Kepada Yth:</p>
+    <p class="kepada">Kepada Yth. Bapak/Ibu:</p>
     <p id="nama" class="nama-tamu"></p>
 
     <button class="btn" onclick="buka()">Buka Undangan</button>
@@ -318,9 +318,7 @@ body{
 const p=new URLSearchParams(window.location.search)
 const namaParam=p.get('to')
 document.getElementById('nama').innerText =
-  namaParam 
-    ? 'Bapak/Ibu ' + decodeURIComponent(namaParam)
-    : 'Bapak/Ibu Tamu Undangan'
+  namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
 /* OPENING */
 function buka(){
