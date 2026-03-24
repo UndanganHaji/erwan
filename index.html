@@ -31,7 +31,7 @@ body{
 #opening{
   position:fixed;
   inset:0;
-  background:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f') center/cover no-repeat;
+  background:url('bg.jpg') center/cover no-repeat;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -134,7 +134,18 @@ body{
   background-position:center;
   filter:brightness(.35);
 }
+.bg{
+  position:absolute;
+  top:-10%;
+  left:-10%;
+  width:120vw;
+  height:120dvh;
+  background:url('bg.jpg') center/cover no-repeat;
+  filter:brightness(.35);
+}
 
+
+  
 /* OVERLAY */
 .swiper-slide::after{
   content:'';
@@ -261,7 +272,7 @@ body{
 <div class="swiper-wrapper">
 
 <div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1564769625392-651b2a0b3d7f')"></div>
+<div class="bg"></div>
 <div class="content fade">
 <span>Assalamu’alaikum</span>
 <span>Dengan penuh syukur</span>
@@ -270,7 +281,7 @@ body{
 </div>
 
 <div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe')"></div>
+<div class="bg"></div>
 <div class="content fade">
 <span>Tuan Rumah</span>
 <span>Bapak & Ibu Ahmad</span>
@@ -278,7 +289,7 @@ body{
 </div>
 
 <div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f')"></div>
+<div class="bg"></div>
 <div class="content fade">
 <span>10 Oktober 2026</span>
 <span>10.00 WITA</span>
@@ -287,7 +298,7 @@ body{
 </div>
 
 <div class="swiper-slide">
-<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458')"></div>
+<div class="bg"></div>
 <div class="content fade">
 <span>Konfirmasi Kehadiran</span>
 <button class="btn" onclick="wa()">WhatsApp</button>
