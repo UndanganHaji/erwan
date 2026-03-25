@@ -157,14 +157,14 @@ html, body{
   font-weight:bold;
 }
 
-/* ✅ COUPLE ZIGZAG */
+/* ✅ COUPLE */
 .couple-vertical{
   margin-top:30px;
   width:100%;
   max-width:320px;
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:10px; /* lebih rapat */
 }
 
 .row{
@@ -184,30 +184,34 @@ html, body{
 
 /* FOTO */
 .foto-besar{
-  width:100px;
-  height:100px;
+  width:90px;
+  height:90px;
   border-radius:50%;
   object-fit:cover;
   border:3px solid gold;
   box-shadow:0 0 15px rgba(255,215,0,.6);
-  transition:.4s;
-}
-
-.foto-besar:hover{
-  transform:scale(1.1);
 }
 
 /* NAMA */
 .nama{
   color:#fff;
-  font-size:28px;
+  font-size:18px;
   font-weight:600;
   text-shadow:0 0 8px rgba(255,215,0,.6);
-  max-width:200px;
+  max-width:150px;
 }
 
 .row.right .nama{
   text-align:right;
+}
+
+/* TANDA & */
+.and{
+  color:gold;
+  font-size:24px;
+  font-weight:bold;
+  text-align:center;
+  text-shadow:0 0 10px rgba(255,215,0,.7);
 }
 
 /* NAV */
@@ -309,6 +313,8 @@ html, body{
     <div class="nama">Erwan Kurniawan</div>
   </div>
 
+  <div class="and">&</div>
+
   <div class="row right">
     <div class="nama">Rr. Rizqomariyati</div>
     <img src="foto2.jpg" class="foto-besar">
@@ -362,7 +368,6 @@ html, body{
 
 <script>
 
-/* NAMA TAMU */
 const p=new URLSearchParams(window.location.search)
 const namaParam=p.get('to')
 document.getElementById('nama').innerText =
