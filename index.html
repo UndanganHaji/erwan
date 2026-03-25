@@ -31,7 +31,6 @@ html, body{
   flex-direction:column;
   justify-content:space-between;
   z-index:9999;
-  animation:fadeIn 1.5s ease;
 }
 
 .overlay{
@@ -40,7 +39,6 @@ html, body{
   background:rgba(0,0,0,.35);
 }
 
-/* TOP TEXT */
 .top-text{
   position:relative;
   z-index:2;
@@ -61,7 +59,7 @@ html, body{
   font-size:32px;
 }
 
-/* GUEST */
+/* BOX TAMU */
 .guest-box{
   position:relative;
   z-index:2;
@@ -71,7 +69,6 @@ html, body{
   border-radius:20px;
   background:rgba(0,0,0,.4);
   text-align:center;
-  animation:slideUp 1.2s ease;
 }
 
 .kepada{color:#ccc;}
@@ -93,18 +90,6 @@ html, body{
   background:linear-gradient(45deg,gold,#ffd700);
   font-weight:bold;
   box-shadow:0 5px 20px rgba(255,215,0,.4);
-  cursor:pointer;
-}
-
-/* ANIMASI */
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
-}
-
-@keyframes slideUp{
-  from{opacity:0; transform:translateY(50px)}
-  to{opacity:1; transform:translateY(0)}
 }
 
 /* SWIPER */
@@ -116,11 +101,9 @@ html, body{
 .swiper-slide{
   position:relative;
   display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
-/* BG */
+/* BACKGROUND */
 .bg{
   position:absolute;
   top:-10%;
@@ -131,6 +114,7 @@ html, body{
   filter:brightness(.65) contrast(1.15);
 }
 
+/* OVERLAY */
 .swiper-slide::after{
   content:'';
   position:absolute;
@@ -143,23 +127,24 @@ html, body{
   );
 }
 
-/* ✅ FIX UTAMA DI SINI */
+/* CONTENT CENTER */
 .content{
   position:relative;
   z-index:2;
   width:100%;
   height:100%;
-  padding:20px;
 
   display:flex;
   flex-direction:column;
-  justify-content:center;   /* tengah vertikal */
-  align-items:center;       /* tengah horizontal */
+
+  justify-content:center;
+  align-items:center;
 
   text-align:center;
+  padding:20px;
+  padding-bottom:80px;
 }
 
-/* SPACING */
 .content span{
   color:#fff;
   font-size:16px;
@@ -170,6 +155,33 @@ html, body{
 .content span:nth-child(2){
   font-size:14px;
   font-weight:bold;
+}
+
+/* ✅ COUPLE */
+.couple{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  margin-top:25px;
+}
+
+.foto{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid gold;
+  box-shadow:0 0 10px rgba(255,215,0,.5);
+}
+
+.nama-couple{
+  color:#fff;
+  font-size:14px;
+  text-align:center;
+  line-height:1.4;
+  font-weight:500;
+  text-shadow:0 0 8px rgba(255,215,0,.6);
 }
 
 /* NAV */
@@ -210,7 +222,7 @@ html, body{
   height:45px;
 }
 
-/* ANIMASI TEKS */
+/* ANIMASI */
 .fade span{
   opacity:0;
   transform:translateY(30px);
@@ -257,14 +269,26 @@ html, body{
 <div class="swiper">
 <div class="swiper-wrapper">
 
+<!-- ✅ HOME (ADA FOTO) -->
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
+
 <span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</span>
 <span>Dengan memohon ridho Allah SWT kami bermaksud menyelenggarakan Tasyakuran Walimatus Safar Haji</span>
+
+<div class="couple">
+  <img src="foto1.jpg" class="foto">
+  <div class="nama-couple">
+    Erwan Kurniawan <br>&<br> Rr. Rizqomariyati
+  </div>
+  <img src="foto2.jpg" class="foto">
+</div>
+
 </div>
 </div>
 
+<!-- TUAN -->
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
@@ -273,6 +297,7 @@ html, body{
 </div>
 </div>
 
+<!-- ACARA -->
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
@@ -282,6 +307,7 @@ html, body{
 </div>
 </div>
 
+<!-- RSVP -->
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
@@ -305,12 +331,13 @@ html, body{
 
 <script>
 
+/* NAMA TAMU */
 const p=new URLSearchParams(window.location.search)
 const namaParam=p.get('to')
-
 document.getElementById('nama').innerText =
   namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
+/* OPENING */
 function buka(){
   const musik = document.getElementById('musik')
   const opening = document.getElementById('opening')
@@ -324,17 +351,20 @@ function buka(){
   musik.play().catch(()=>{})
 }
 
+/* WA */
 function wa(){
   const nama = namaParam || 'Tamu'
   const pesan = `Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
   window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
 }
 
+/* MUTE */
 function toggleMusic(){
   const m=document.getElementById('musik')
   m.muted=!m.muted
 }
 
+/* SWIPER */
 const swiper=new Swiper('.swiper',{
   direction:'vertical',
   speed:900,
@@ -355,6 +385,7 @@ el.classList.toggle('active',idx===i)
 })
 }
 
+/* RESET ANIMASI */
 function resetAnimasi(){
   document.querySelectorAll('.content').forEach(el=>{
     el.classList.remove('fade')
