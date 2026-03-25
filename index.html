@@ -22,10 +22,6 @@ html, body{
   font-family:Poppins,sans-serif;
 }
 
-body{
-  position:relative;
-}
-
 /* OPENING */
 #opening{
   position:fixed;
@@ -38,14 +34,13 @@ body{
   animation:fadeIn 1.5s ease;
 }
 
-/* OVERLAY (DIRINGANKAN) */
 .overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.35); /* sebelumnya 0.75 */
+  background:rgba(0,0,0,.35);
 }
 
-/* TEKS ATAS */
+/* TOP TEXT */
 .top-text{
   position:relative;
   z-index:2;
@@ -66,7 +61,7 @@ body{
   font-size:32px;
 }
 
-/* BOX TAMU (HAPUS BLUR) */
+/* GUEST */
 .guest-box{
   position:relative;
   z-index:2;
@@ -74,7 +69,7 @@ body{
   margin-bottom:40px;
   padding:25px;
   border-radius:20px;
-  background:rgba(0,0,0,.4); /* lebih ringan */
+  background:rgba(0,0,0,.4);
   text-align:center;
   animation:slideUp 1.2s ease;
 }
@@ -98,6 +93,7 @@ body{
   background:linear-gradient(45deg,gold,#ffd700);
   font-weight:bold;
   box-shadow:0 5px 20px rgba(255,215,0,.4);
+  cursor:pointer;
 }
 
 /* ANIMASI */
@@ -124,7 +120,7 @@ body{
   justify-content:center;
 }
 
-/* BACKGROUND SLIDE (BERSIH) */
+/* BG */
 .bg{
   position:absolute;
   top:-10%;
@@ -135,7 +131,6 @@ body{
   filter:brightness(.65) contrast(1.15);
 }
 
-/* OVERLAY SLIDE (DIRINGANKAN) */
 .swiper-slide::after{
   content:'';
   position:absolute;
@@ -148,25 +143,28 @@ body{
   );
 }
 
-/* CONTENT */
+/* ✅ FIX UTAMA DI SINI */
 .content{
   position:relative;
   z-index:2;
   width:100%;
   height:100%;
   padding:20px;
-  padding-bottom:120px;
+
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
-  align-items:center;
+  justify-content:center;   /* tengah vertikal */
+  align-items:center;       /* tengah horizontal */
+
   text-align:center;
 }
 
+/* SPACING */
 .content span{
   color:#fff;
   font-size:16px;
   text-shadow:0 2px 6px rgba(0,0,0,.8);
+  margin:6px 0;
 }
 
 .content span:nth-child(2){
@@ -212,7 +210,7 @@ body{
   height:45px;
 }
 
-/* ANIMASI */
+/* ANIMASI TEKS */
 .fade span{
   opacity:0;
   transform:translateY(30px);
@@ -234,24 +232,18 @@ body{
 
 <!-- OPENING -->
 <div id="opening">
-
   <div class="overlay"></div>
 
- 
-  <!-- ATAS (TANPA BOX) -->
   <div class="top-text">
     <p class="small">Walimatus Safar Haji</p>
     <h1>Bapak & Ibu Erwan</h1>
   </div>
 
-  <!-- BAWAH (BOX NAMA TAMU) -->
   <div class="guest-box">
     <p class="kepada">Kepada Yth. Bapak/Ibu/Sdr/i :</p>
     <p id="nama" class="nama-tamu"></p>
-
     <button class="btn" onclick="buka()">Buka Undangan</button>
   </div>
-
 </div>
 
 <!-- AUDIO -->
@@ -313,13 +305,12 @@ body{
 
 <script>
 
-/* NAMA TAMU */
 const p=new URLSearchParams(window.location.search)
 const namaParam=p.get('to')
+
 document.getElementById('nama').innerText =
   namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
-/* OPENING */
 function buka(){
   const musik = document.getElementById('musik')
   const opening = document.getElementById('opening')
@@ -327,28 +318,23 @@ function buka(){
   opening.style.opacity = '0'
   opening.style.transition = '1s'
 
-  setTimeout(()=>{
-    opening.style.display='none'
-  },1000)
+  setTimeout(()=>{ opening.style.display='none' },1000)
 
   musik.muted=false
   musik.play().catch(()=>{})
 }
 
-/* WA */
 function wa(){
   const nama = namaParam || 'Tamu'
   const pesan = `Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
   window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
 }
 
-/* MUTE */
 function toggleMusic(){
   const m=document.getElementById('musik')
   m.muted=!m.muted
 }
 
-/* SWIPER */
 const swiper=new Swiper('.swiper',{
   direction:'vertical',
   speed:900,
@@ -369,7 +355,6 @@ el.classList.toggle('active',idx===i)
 })
 }
 
-/* RESET ANIMASI */
 function resetAnimasi(){
   document.querySelectorAll('.content').forEach(el=>{
     el.classList.remove('fade')
