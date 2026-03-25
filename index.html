@@ -152,40 +152,49 @@ html, body{
   margin:6px 0;
 }
 
-.content span:nth-child(2){
-  font-size:14px;
-  font-weight:bold;
-}
+/* ================= */
+/* 🔥 FIX COUPLE RAPAT */
+/* ================= */
 
-/* ✅ COUPLE */
 .couple-vertical{
-  margin-top:30px;
+  margin-top:25px;
   width:100%;
-  max-width:350px;
+  max-width:360px;
   display:flex;
   flex-direction:column;
-  gap:2px; /* lebih rapat */
+  gap:5px; /* RAPAT */
 }
 
 .row{
   display:flex;
   align-items:center;
+  gap:10px;
 }
 
+/* kiri */
 .row.left{
   justify-content:flex-start;
-  gap:15px;
 }
 
+/* kanan */
 .row.right{
   justify-content:flex-end;
-  gap:15px;
+}
+
+/* urutan kanan */
+.row.right .nama{
+  order:1;
+  text-align:right;
+}
+
+.row.right img{
+  order:2;
 }
 
 /* FOTO */
 .foto-besar{
-  width:100px;
-  height:100px;
+  width:90px;
+  height:90px;
   border-radius:50%;
   object-fit:cover;
   border:3px solid gold;
@@ -195,23 +204,18 @@ html, body{
 /* NAMA */
 .nama{
   color:#fff;
-  font-size:20px;
+  font-size:18px;
   font-weight:600;
   text-shadow:0 0 8px rgba(255,215,0,.6);
-  max-width:200px;
 }
 
-.row.right .nama{
-  text-align:right;
-}
-
-/* TANDA & */
+/* & */
 .and{
   color:gold;
   font-size:24px;
   font-weight:bold;
   text-align:center;
-  text-shadow:0 0 10px rgba(255,215,0,.7);
+  line-height:1;
 }
 
 /* NAV */
