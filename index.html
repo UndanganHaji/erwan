@@ -152,9 +152,9 @@ html, body{
   margin:6px 0;
 }
 
-/* ================= */
-/* 🔥 FIX COUPLE RAPAT */
-/* ================= */
+/* ========================= */
+/* 💎 COUPLE PREMIUM STYLE */
+/* ========================= */
 
 .couple-vertical{
   margin-top:25px;
@@ -162,31 +162,45 @@ html, body{
   max-width:360px;
   display:flex;
   flex-direction:column;
-  gap:5px; /* RAPAT */
+  gap:8px;
 }
 
+/* garis atas & bawah */
+.couple-vertical::before,
+.couple-vertical::after{
+  content:'';
+  width:60px;
+  height:2px;
+  background:linear-gradient(to right, transparent, gold, transparent);
+  margin:5px auto;
+  opacity:.7;
+}
+
+/* ROW */
 .row{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  opacity:0;
 }
 
-/* kiri */
+/* ANIMASI MASUK */
 .row.left{
   justify-content:flex-start;
+  animation:slideLeft .8s ease forwards;
 }
 
-/* kanan */
 .row.right{
   justify-content:flex-end;
+  animation:slideRight .8s ease forwards;
+  animation-delay:.3s;
 }
 
-/* urutan kanan */
+/* URUTAN */
 .row.right .nama{
   order:1;
   text-align:right;
 }
-
 .row.right img{
   order:2;
 }
@@ -198,7 +212,14 @@ html, body{
   border-radius:50%;
   object-fit:cover;
   border:3px solid gold;
-  box-shadow:0 0 15px rgba(255,215,0,.6);
+  animation:glow 3s ease-in-out infinite;
+}
+
+/* GLOW HALUS */
+@keyframes glow{
+  0%{box-shadow:0 0 5px rgba(255,215,0,.4);}
+  50%{box-shadow:0 0 20px rgba(255,215,0,.9);}
+  100%{box-shadow:0 0 5px rgba(255,215,0,.4);}
 }
 
 /* NAMA */
@@ -206,18 +227,53 @@ html, body{
   color:#fff;
   font-size:18px;
   font-weight:600;
-  text-shadow:0 0 8px rgba(255,215,0,.6);
+  text-shadow:0 0 10px rgba(255,215,0,.6);
 }
 
-/* & */
+/* & TENGAH */
 .and{
   color:gold;
-  font-size:24px;
+  font-size:26px;
   font-weight:bold;
   text-align:center;
-  line-height:1;
+  margin:2px 0;
+  position:relative;
 }
 
+/* garis samping & */
+.and::before,
+.and::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  width:40px;
+  height:1px;
+  background:gold;
+  opacity:.6;
+}
+
+.and::before{
+  left:-50px;
+}
+
+.and::after{
+  right:-50px;
+}
+
+/* ANIMASI MASUK */
+@keyframes slideLeft{
+  from{opacity:0; transform:translateX(-50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes slideRight{
+  from{opacity:0; transform:translateX(50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+
+
+  
 /* NAV */
 .nav{
   position:fixed;
