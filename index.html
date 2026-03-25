@@ -112,6 +112,12 @@ html, body{
   height:120dvh;
   background:url('bg.jpg') center/cover no-repeat;
   filter:brightness(.65) contrast(1.15);
+  animation:zoomBg 20s infinite alternate;
+}
+
+@keyframes zoomBg{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
 }
 
 /* OVERLAY */
@@ -127,7 +133,7 @@ html, body{
   );
 }
 
-/* CONTENT CENTER */
+/* CONTENT */
 .content{
   position:relative;
   z-index:2;
@@ -153,7 +159,7 @@ html, body{
 }
 
 /* ========================= */
-/* 💎 COUPLE PREMIUM STYLE */
+/* 💎 COUPLE PREMIUM */
 /* ========================= */
 
 .couple-vertical{
@@ -165,18 +171,6 @@ html, body{
   gap:8px;
 }
 
-/* garis atas & bawah */
-.couple-vertical::before,
-.couple-vertical::after{
-  content:'';
-  width:60px;
-  height:2px;
-  background:linear-gradient(to right, transparent, gold, transparent);
-  margin:5px auto;
-  opacity:.7;
-}
-
-/* ROW */
 .row{
   display:flex;
   align-items:center;
@@ -184,23 +178,22 @@ html, body{
   opacity:0;
 }
 
-/* ANIMASI MASUK */
 .row.left{
   justify-content:flex-start;
-  animation:slideLeft .8s ease forwards;
+  animation:slideLeft .8s forwards;
 }
 
 .row.right{
   justify-content:flex-end;
-  animation:slideRight .8s ease forwards;
+  animation:slideRight .8s forwards;
   animation-delay:.3s;
 }
 
-/* URUTAN */
 .row.right .nama{
   order:1;
   text-align:right;
 }
+
 .row.right img{
   order:2;
 }
@@ -212,10 +205,10 @@ html, body{
   border-radius:50%;
   object-fit:cover;
   border:3px solid gold;
-  animation:glow 3s ease-in-out infinite;
+  animation:glow 3s infinite;
 }
 
-/* GLOW HALUS */
+/* GLOW */
 @keyframes glow{
   0%{box-shadow:0 0 5px rgba(255,215,0,.4);}
   50%{box-shadow:0 0 20px rgba(255,215,0,.9);}
@@ -230,17 +223,15 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.6);
 }
 
-/* & TENGAH */
+/* & */
 .and{
   color:gold;
   font-size:26px;
   font-weight:bold;
   text-align:center;
-  margin:2px 0;
   position:relative;
 }
 
-/* garis samping & */
 .and::before,
 .and::after{
   content:'';
@@ -252,15 +243,10 @@ html, body{
   opacity:.6;
 }
 
-.and::before{
-  left:-50px;
-}
+.and::before{left:-50px;}
+.and::after{right:-50px;}
 
-.and::after{
-  right:-50px;
-}
-
-/* ANIMASI MASUK */
+/* ANIMASI */
 @keyframes slideLeft{
   from{opacity:0; transform:translateX(-50px);}
   to{opacity:1; transform:translateX(0);}
@@ -271,9 +257,18 @@ html, body{
   to{opacity:1; transform:translateX(0);}
 }
 
+/* ✅ PENUTUP */
+.penutup{
+  margin-top:15px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  line-height:1.5;
+  max-width:320px;
+  opacity:.9;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
+}
 
-
-  
 /* NAV */
 .nav{
   position:fixed;
@@ -293,7 +288,6 @@ html, body{
   color:#aaa;
   text-decoration:none;
   font-size:12px;
-  cursor:pointer;
 }
 
 .nav a.active{color:gold;}
@@ -312,7 +306,7 @@ html, body{
   height:45px;
 }
 
-/* ANIMASI */
+/* ANIMASI TEXT */
 .fade span{
   opacity:0;
   transform:translateY(30px);
@@ -347,14 +341,12 @@ html, body{
   </div>
 </div>
 
-<!-- AUDIO -->
 <audio id="musik" loop muted>
 <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
 </audio>
 
 <button class="mute" onclick="toggleMusic()">🔊</button>
 
-<!-- SLIDER -->
 <div class="swiper">
 <div class="swiper-wrapper">
 
@@ -381,6 +373,11 @@ html, body{
   </div>
 
 </div>
+
+<p class="penutup">
+Merupakan suatu kehormatan dan kebahagiaan kami, apabila Bapak/Ibu/Saudara/i
+dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
+</p>
 
 </div>
 </div>
@@ -416,7 +413,6 @@ html, body{
 </div>
 </div>
 
-<!-- NAV -->
 <div class="nav">
 <a onclick="go(0)" class="active">Home</a>
 <a onclick="go(1)">Tuan</a>
@@ -434,21 +430,17 @@ document.getElementById('nama').innerText =
   namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
 function buka(){
-  const musik = document.getElementById('musik')
-  const opening = document.getElementById('opening')
-
-  opening.style.opacity = '0'
-  opening.style.transition = '1s'
-
-  setTimeout(()=>{ opening.style.display='none' },1000)
-
+  const musik=document.getElementById('musik')
+  const opening=document.getElementById('opening')
+  opening.style.opacity='0'
+  setTimeout(()=>opening.style.display='none',1000)
   musik.muted=false
   musik.play().catch(()=>{})
 }
 
 function wa(){
-  const nama = namaParam || 'Tamu'
-  const pesan = `Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
+  const nama=namaParam||'Tamu'
+  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
   window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
 }
 
@@ -463,27 +455,14 @@ const swiper=new Swiper('.swiper',{
   mousewheel:true,
   on:{
     slideChange:function(){
-      setActive(this.activeIndex)
-      resetAnimasi()
+      document.querySelectorAll('.nav a').forEach((el,i)=>{
+        el.classList.toggle('active',i===this.activeIndex)
+      })
     }
   }
 })
 
 function go(i){swiper.slideTo(i)}
-
-function setActive(i){
-document.querySelectorAll('.nav a').forEach((el,idx)=>{
-el.classList.toggle('active',idx===i)
-})
-}
-
-function resetAnimasi(){
-  document.querySelectorAll('.content').forEach(el=>{
-    el.classList.remove('fade')
-    void el.offsetWidth
-    el.classList.add('fade')
-  })
-}
 
 </script>
 
