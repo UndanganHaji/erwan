@@ -157,31 +157,57 @@ html, body{
   font-weight:bold;
 }
 
-/* ✅ COUPLE */
-.couple{
+/* ✅ COUPLE ZIGZAG */
+.couple-vertical{
+  margin-top:30px;
+  width:100%;
+  max-width:320px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.row{
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:15px;
-  margin-top:25px;
 }
 
-.foto{
-  width:70px;
-  height:70px;
+.row.left{
+  justify-content:flex-start;
+  gap:15px;
+}
+
+.row.right{
+  justify-content:flex-end;
+  gap:15px;
+}
+
+/* FOTO */
+.foto-besar{
+  width:85px;
+  height:85px;
   border-radius:50%;
   object-fit:cover;
-  border:2px solid gold;
-  box-shadow:0 0 10px rgba(255,215,0,.5);
+  border:3px solid gold;
+  box-shadow:0 0 15px rgba(255,215,0,.6);
+  transition:.4s;
 }
 
-.nama-couple{
+.foto-besar:hover{
+  transform:scale(1.1);
+}
+
+/* NAMA */
+.nama{
   color:#fff;
-  font-size:14px;
-  text-align:center;
-  line-height:1.4;
-  font-weight:500;
+  font-size:16px;
+  font-weight:600;
   text-shadow:0 0 8px rgba(255,215,0,.6);
+  max-width:150px;
+}
+
+.row.right .nama{
+  text-align:right;
 }
 
 /* NAV */
@@ -231,7 +257,6 @@ html, body{
 
 .fade span:nth-child(1){animation-delay:.3s}
 .fade span:nth-child(2){animation-delay:.6s}
-.fade span:nth-child(3){animation-delay:.9s}
 
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0)}
@@ -269,7 +294,7 @@ html, body{
 <div class="swiper">
 <div class="swiper-wrapper">
 
-<!-- ✅ HOME (ADA FOTO) -->
+<!-- HOME -->
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
@@ -277,12 +302,18 @@ html, body{
 <span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</span>
 <span>Dengan memohon ridho Allah SWT kami bermaksud menyelenggarakan Tasyakuran Walimatus Safar Haji</span>
 
-<div class="couple">
-  <img src="foto1.jpg" class="foto">
-  <div class="nama-couple">
-    Erwan Kurniawan <br>&<br> Rr. Rizqomariyati
+<div class="couple-vertical">
+
+  <div class="row left">
+    <img src="foto1.jpg" class="foto-besar">
+    <div class="nama">Erwan Kurniawan</div>
   </div>
-  <img src="foto2.jpg" class="foto">
+
+  <div class="row right">
+    <div class="nama">Rr. Rizqomariyati</div>
+    <img src="foto2.jpg" class="foto-besar">
+  </div>
+
 </div>
 
 </div>
@@ -337,7 +368,6 @@ const namaParam=p.get('to')
 document.getElementById('nama').innerText =
   namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
-/* OPENING */
 function buka(){
   const musik = document.getElementById('musik')
   const opening = document.getElementById('opening')
@@ -351,20 +381,17 @@ function buka(){
   musik.play().catch(()=>{})
 }
 
-/* WA */
 function wa(){
   const nama = namaParam || 'Tamu'
   const pesan = `Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
   window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
 }
 
-/* MUTE */
 function toggleMusic(){
   const m=document.getElementById('musik')
   m.muted=!m.muted
 }
 
-/* SWIPER */
 const swiper=new Swiper('.swiper',{
   direction:'vertical',
   speed:900,
@@ -385,7 +412,6 @@ el.classList.toggle('active',idx===i)
 })
 }
 
-/* RESET ANIMASI */
 function resetAnimasi(){
   document.querySelectorAll('.content').forEach(el=>{
     el.classList.remove('fade')
