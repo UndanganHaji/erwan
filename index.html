@@ -401,7 +401,35 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.7);
 }
 
+.countdown-grid{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
 
+.cd-box{
+  background:#e8d9a8;
+  color:#333;
+  width:70px;
+  height:70px;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.cd-box span{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.cd-box p{
+  font-size:10px;
+  letter-spacing:1px;
+}
 
 
 
@@ -504,7 +532,32 @@ dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
 <!-- ✅ PINDAH KE LUAR -->
 <div class="countdown-box">
   <p>Menuju Acara</p>
-  <div id="countdown"></div>
+  
+  <div class="countdown-grid">
+
+  <div class="cd-box">
+    <span id="hari">0</span>
+    <p>HARI</p>
+  </div>
+
+  <div class="cd-box">
+    <span id="jam">0</span>
+    <p>JAM</p>
+  </div>
+
+  <div class="cd-box">
+    <span id="menit">0</span>
+    <p>MENIT</p>
+  </div>
+
+  <div class="cd-box">
+    <span id="detik">0</span>
+    <p>DETIK</p>
+  </div>
+
+</div>
+
+
 </div>
 
 
@@ -607,9 +660,10 @@ setInterval(function(){
   const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const detik = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("countdown").innerHTML =
-    `${hari}H ${jam}J ${menit}M ${detik}D`;
-
+  document.getElementById("hari").innerText = hari;
+document.getElementById("jam").innerText = jam;
+document.getElementById("menit").innerText = menit;
+document.getElementById("detik").innerText = detik;
 },1000);
 
 
