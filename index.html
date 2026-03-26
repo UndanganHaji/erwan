@@ -381,7 +381,25 @@ html, body{
   font-weight:bold;
 }
 
+.countdown-box{
+  margin-top:20px;
+  text-align:center;
+  color:#fff;
+}
 
+.countdown-box p{
+  font-size:14px;
+  margin-bottom:8px;
+  opacity:.8;
+}
+
+#countdown{
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:1px;
+  color:gold;
+  text-shadow:0 0 10px rgba(255,215,0,.7);
+}
 
 
 
@@ -481,6 +499,16 @@ dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
 
   </div>
 
+<div class="countdown-box">
+  <p>Menuju Acara</p>
+  <div id="countdown"></div>
+</div>
+
+
+
+
+
+  
 </div>
 
 </div>
@@ -564,7 +592,22 @@ function map(){
 }
 
 
+const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
 
+setInterval(function(){
+
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const detik = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    `${hari}H ${jam}J ${menit}M ${detik}D`;
+
+},1000);
 
 
   
