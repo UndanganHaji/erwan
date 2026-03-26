@@ -87,6 +87,7 @@ html, body{
   border-radius:40px;
   background:linear-gradient(45deg,gold,#ffd700);
   font-weight:bold;
+  box-shadow:0 5px 20px rgba(255,215,0,.4);
 }
 
 /* SWIPER */
@@ -97,20 +98,44 @@ html, body{
 
 .swiper-slide{
   position:relative;
+  display:flex;
 }
 
 /* BACKGROUND */
 .bg{
   position:absolute;
-  inset:0;
+  top:-10%;
+  left:-10%;
+  width:120vw;
+  height:120dvh;
   background:url('bg.jpg') center/cover no-repeat;
-  filter:brightness(.65);
+  filter:brightness(.65) contrast(1.15);
+  animation:zoomBg 20s infinite alternate;
+}
+
+@keyframes zoomBg{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* OVERLAY */
+.swiper-slide::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75) 20%,
+    rgba(0,0,0,.4) 60%,
+    transparent
+  );
 }
 
 /* CONTENT */
 .content{
   position:relative;
   z-index:2;
+  width:100%;
   height:100%;
   display:flex;
   flex-direction:column;
@@ -118,16 +143,34 @@ html, body{
   align-items:center;
   text-align:center;
   padding:20px;
+  padding-bottom:80px;
 }
 
 .content span{
   color:#fff;
+  font-size:16px;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
+  margin:6px 0;
 }
 
-/* ================= */
-/* JADWAL */
-/* ================= */
+/* COUPLE */
+.couple-vertical{
+  margin-top:25px;
+  max-width:360px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
 
+.row{display:flex;align-items:center;gap:12px;}
+.foto-besar{
+  width:90px;height:90px;border-radius:50%;
+  object-fit:cover;border:3px solid gold;
+}
+.nama{color:#fff;font-weight:600;}
+.and{color:gold;font-size:24px;text-align:center;}
+
+/* JADWAL */
 .jadwal-box{
   width:100%;
   max-width:360px;
@@ -138,7 +181,6 @@ html, body{
   background:rgba(255,255,255,0.1);
 }
 
-/* kiri */
 .tanggal-box{
   width:110px;
   background:rgba(255,255,255,0.2);
@@ -149,12 +191,7 @@ html, body{
 .tgl{font-size:42px;font-weight:bold;color:#000;}
 .bulan,.tahun{color:#000;}
 
-/* kanan */
-.detail-box{
-  flex:1;
-  padding:20px;
-  color:#fff;
-}
+.detail-box{flex:1;padding:20px;color:#fff;}
 
 .btn-map{
   margin-top:10px;
@@ -173,6 +210,7 @@ html, body{
 
 #countdown{
   display:flex;
+  justify-content:center;
   gap:10px;
 }
 
@@ -194,11 +232,7 @@ html, body{
   background:rgba(0,0,0,.8);
 }
 
-.nav a{
-  color:#aaa;
-  padding:10px;
-}
-
+.nav a{color:#aaa;padding:10px;}
 .nav a.active{color:gold;}
 
 </style>
@@ -241,11 +275,9 @@ html, body{
 <!-- JADWAL -->
 <div class="swiper-slide">
 <div class="bg"></div>
-
 <div class="content">
 
 <div class="jadwal-box">
-
   <div class="tanggal-box">
     <div class="tgl">31</div>
     <div class="bulan">MAR</div>
@@ -258,7 +290,6 @@ html, body{
     <p>Mataram</p>
     <button class="btn-map" onclick="map()">Petunjuk Arah</button>
   </div>
-
 </div>
 
 <div class="countdown-luar">
@@ -291,13 +322,11 @@ html, body{
 
 <script>
 
-// nama tamu
 const p=new URLSearchParams(window.location.search)
 const namaParam=p.get('to')
 document.getElementById('nama').innerText =
   namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
-// buka
 function buka(){
   const musik=document.getElementById('musik')
   const opening=document.getElementById('opening')
@@ -309,10 +338,8 @@ function buka(){
   musik.play().catch(()=>{})
 }
 
-// swiper
 const swiper=new Swiper('.swiper',{
   direction:'vertical',
-  speed:900,
   mousewheel:true,
   on:{
     slideChange:function(){
@@ -325,43 +352,36 @@ const swiper=new Swiper('.swiper',{
 
 function go(i){swiper.slideTo(i)}
 
-// maps
 function map(){
   window.open("https://maps.google.com/?q=mataram")
 }
 
-// WA
 function wa(){
   const nama=namaParam||'Tamu'
-  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir.`
-  window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
+  window.open(`https://wa.me/6281234567890?text=Saya ${nama} akan hadir`)
 }
 
-// countdown
-const countdownEl = document.getElementById("countdown");
+const countdownEl=document.getElementById("countdown")
+const target=new Date("Mar 31, 2026 12:00:00").getTime()
 
-const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
+setInterval(()=>{
+  if(!countdownEl) return
 
-setInterval(function(){
+  const now=new Date().getTime()
+  const d=target-now
 
-  if(!countdownEl) return;
+  const h=Math.floor(d/(1000*60*60*24))
+  const j=Math.floor((d%(1000*60*60*24))/(1000*60*60))
+  const m=Math.floor((d%(1000*60*60))/(1000*60))
+  const s=Math.floor((d%(1000*60))/1000)
 
-  const now = new Date().getTime();
-  const d = targetDate - now;
-
-  const h = Math.floor(d/(1000*60*60*24));
-  const j = Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const m = Math.floor((d%(1000*60*60))/(1000*60));
-  const s = Math.floor((d%(1000*60))/1000);
-
-  countdownEl.innerHTML = `
+  countdownEl.innerHTML=`
     <span>${h}<br>Hari</span>
     <span>${j}<br>Jam</span>
     <span>${m}<br>Menit</span>
     <span>${s}<br>Detik</span>
-  `;
-
-},1000);
+  `
+},1000)
 
 </script>
 
