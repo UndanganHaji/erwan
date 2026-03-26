@@ -31,12 +31,14 @@ html, body{
   flex-direction:column;
   justify-content:space-between;
   z-index:9999;
+  transition:1s;
 }
 
 .overlay{
   position:absolute;
   inset:0;
   background:rgba(0,0,0,.35);
+  pointer-events:none; /* 🔥 FIX */
 }
 
 .top-text{
@@ -50,7 +52,6 @@ html, body{
   color:#ddd;
   font-size:18px;
   letter-spacing:2px;
-  margin-bottom:10px;
 }
 
 .top-text h1{
@@ -62,7 +63,7 @@ html, body{
 /* BOX TAMU */
 .guest-box{
   position:relative;
-  z-index:2;
+  z-index:5;
   margin:20px;
   margin-bottom:40px;
   padding:25px;
@@ -71,11 +72,8 @@ html, body{
   text-align:center;
 }
 
-.kepada{color:#ccc;}
-
 .nama-tamu{
   color:gold;
-  text-shadow:0 0 10px rgba(255,215,0,.6);
   font-size:20px;
   font-weight:bold;
   margin:10px 0;
@@ -89,7 +87,6 @@ html, body{
   border-radius:40px;
   background:linear-gradient(45deg,gold,#ffd700);
   font-weight:bold;
-  box-shadow:0 5px 20px rgba(255,215,0,.4);
 }
 
 /* SWIPER */
@@ -100,226 +97,36 @@ html, body{
 
 .swiper-slide{
   position:relative;
-  display:flex;
 }
 
 /* BACKGROUND */
 .bg{
   position:absolute;
-  top:-10%;
-  left:-10%;
-  width:120vw;
-  height:120dvh;
-  background:url('bg.jpg') center/cover no-repeat;
-  filter:brightness(.65) contrast(1.15);
-  animation:zoomBg 20s infinite alternate;
-}
-
-@keyframes zoomBg{
-  from{transform:scale(1);}
-  to{transform:scale(1.1);}
-}
-
-/* OVERLAY */
-.swiper-slide::after{
-  content:'';
-  position:absolute;
   inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.75) 20%,
-    rgba(0,0,0,.4) 60%,
-    transparent
-  );
+  background:url('bg.jpg') center/cover no-repeat;
+  filter:brightness(.65);
 }
 
 /* CONTENT */
 .content{
   position:relative;
   z-index:2;
-  width:100%;
   height:100%;
-
   display:flex;
   flex-direction:column;
-
   justify-content:center;
   align-items:center;
-
   text-align:center;
   padding:20px;
-  padding-bottom:80px;
 }
 
 .content span{
   color:#fff;
-  font-size:16px;
-  text-shadow:0 2px 6px rgba(0,0,0,.8);
-  margin:6px 0;
 }
 
-/* ========================= */
-/* 💎 COUPLE PREMIUM */
-/* ========================= */
-
-.couple-vertical{
-  margin-top:25px;
-  width:100%;
-  max-width:360px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  opacity:0;
-}
-
-.row.left{
-  justify-content:flex-start;
-  animation:slideLeft .8s forwards;
-}
-
-.row.right{
-  justify-content:flex-end;
-  animation:slideRight .8s forwards;
-  animation-delay:.3s;
-}
-
-.row.right .nama{
-  order:1;
-  text-align:right;
-}
-
-.row.right img{
-  order:2;
-}
-
-/* FOTO */
-.foto-besar{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid gold;
-  animation:glow 3s infinite;
-}
-
-/* GLOW */
-@keyframes glow{
-  0%{box-shadow:0 0 5px rgba(255,215,0,.4);}
-  50%{box-shadow:0 0 20px rgba(255,215,0,.9);}
-  100%{box-shadow:0 0 5px rgba(255,215,0,.4);}
-}
-
-/* NAMA */
-.nama{
-  color:#fff;
-  font-size:18px;
-  font-weight:600;
-  text-shadow:0 0 10px rgba(255,215,0,.6);
-}
-
-/* & */
-.and{
-  color:gold;
-  font-size:26px;
-  font-weight:bold;
-  text-align:center;
-  position:relative;
-}
-
-.and::before,
-.and::after{
-  content:'';
-  position:absolute;
-  top:50%;
-  width:40px;
-  height:1px;
-  background:gold;
-  opacity:.6;
-}
-
-.and::before{left:-50px;}
-.and::after{right:-50px;}
-
-/* ANIMASI */
-@keyframes slideLeft{
-  from{opacity:0; transform:translateX(-50px);}
-  to{opacity:1; transform:translateX(0);}
-}
-
-@keyframes slideRight{
-  from{opacity:0; transform:translateX(50px);}
-  to{opacity:1; transform:translateX(0);}
-}
-
-/* ✅ PENUTUP */
-.penutup{
-  margin-top:15px;
-  color:#fff;
-  font-size:16px;
-  text-align:center;
-  line-height:1.5;
-  max-width:320px;
-  opacity:.9;
-  text-shadow:0 2px 6px rgba(0,0,0,.8);
-}
-
-/* NAV */
-.nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100vw;
-  height:70px;
-  background:rgba(0,0,0,.85);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:999;
-}
-
-.nav a{
-  color:#aaa;
-  text-decoration:none;
-  font-size:12px;
-}
-
-.nav a.active{color:gold;}
-
-/* MUTE */
-.mute{
-  position:fixed;
-  top:20px;
-  right:20px;
-  z-index:9999;
-  background:rgba(0,0,0,.6);
-  color:#fff;
-  border:none;
-  border-radius:50%;
-  width:45px;
-  height:45px;
-}
-
-/* ANIMASI TEXT */
-.fade span{
-  opacity:0;
-  transform:translateY(30px);
-  animation:fadeUp .8s forwards;
-}
-
-.fade span:nth-child(1){animation-delay:.3s}
-.fade span:nth-child(2){animation-delay:.6s}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0)}
-}
-
+/* ================= */
+/* JADWAL */
+/* ================= */
 
 .jadwal-box{
   width:100%;
@@ -329,115 +136,71 @@ html, body{
   overflow:hidden;
   backdrop-filter:blur(12px);
   background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.3);
-  box-shadow:0 10px 40px rgba(0,0,0,.4);
-  animation:fadeUp 1s ease;
 }
 
-/* KIRI */
+/* kiri */
 .tanggal-box{
   width:110px;
   background:rgba(255,255,255,0.2);
   text-align:center;
-  padding:15px 10px;
+  padding:15px;
 }
 
-.tgl{
-  font-size:42px;
-  font-weight:bold;
-  color:#000;
-}
+.tgl{font-size:42px;font-weight:bold;color:#000;}
+.bulan,.tahun{color:#000;}
 
-.bulan, .tahun{
-  font-size:16px;
-  color:#000;
-}
-
-/* KANAN */
+/* kanan */
 .detail-box{
   flex:1;
   padding:20px;
   color:#fff;
 }
 
-.detail-box h2{
-  font-size:22px;
-  margin-bottom:10px;
-}
-
-.detail-box p{
-  font-size:14px;
-  margin:5px 0;
-}
-
-/* BUTTON MAP */
 .btn-map{
-  margin-top:15px;
-  padding:12px;
+  margin-top:10px;
+  padding:10px;
   width:100%;
   border:none;
-  border-radius:25px;
-  background:#fff;
-  font-weight:bold;
+  border-radius:20px;
 }
 
-.countdown-box{
-  margin-top:20px;
-  text-align:center;
-  color:#fff;
-}
-
-.countdown-box p{
-  font-size:14px;
-  margin-bottom:8px;
-  opacity:.8;
-}
-
-#countdown{
-  font-size:20px;
-  font-weight:bold;
-  letter-spacing:1px;
-  color:gold;
-  text-shadow:0 0 10px rgba(255,215,0,.7);
-}
-
+/* COUNTDOWN */
 .countdown-luar{
   margin-top:25px;
   text-align:center;
   color:#fff;
 }
 
-.countdown-luar p{
-  font-size:14px;
-  margin-bottom:10px;
-  opacity:.8;
-}
-
-/* STYLE ANGKA PREMIUM */
 #countdown{
   display:flex;
-  justify-content:center;
-  gap:12px;
+  gap:10px;
 }
 
 #countdown span{
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(10px);
-  padding:12px 10px;
-  border-radius:12px;
+  background:rgba(255,255,255,0.15);
+  padding:10px;
+  border-radius:10px;
   min-width:60px;
-  font-size:14px;
-  font-weight:600;
   color:gold;
-  box-shadow:0 5px 20px rgba(0,0,0,.3);
 }
 
-  
+/* NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  background:rgba(0,0,0,.8);
+}
 
+.nav a{
+  color:#aaa;
+  padding:10px;
+}
 
+.nav a.active{color:gold;}
 
-
-  
 </style>
 </head>
 
@@ -453,7 +216,7 @@ html, body{
   </div>
 
   <div class="guest-box">
-    <p class="kepada">Kepada Yth. Bapak/Ibu/Sdr/i :</p>
+    <p>Kepada Yth :</p>
     <p id="nama" class="nama-tamu"></p>
     <button class="btn" onclick="buka()">Buka Undangan</button>
   </div>
@@ -463,109 +226,53 @@ html, body{
 <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
 </audio>
 
-<button class="mute" onclick="toggleMusic()">🔊</button>
-
 <div class="swiper">
 <div class="swiper-wrapper">
 
 <!-- HOME -->
 <div class="swiper-slide">
 <div class="bg"></div>
-<div class="content fade">
-
-<span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</span>
-<span>Dengan memohon ridho Allah SWT kami bermaksud menyelenggarakan Tasyakuran Walimatus Safar Haji</span>
-
-<div class="couple-vertical">
-
-  <div class="row left">
-    <img src="foto1.jpg" class="foto-besar">
-    <div class="nama">Erwan Kurniawan</div>
-  </div>
-
-  <div class="and">&</div>
-
-  <div class="row right">
-    <div class="nama">Rr. Rizqomariyati</div>
-    <img src="foto2.jpg" class="foto-besar">
-  </div>
-
-</div>
-
-<p class="penutup">
-Merupakan suatu kehormatan dan kebahagiaan kami, apabila Bapak/Ibu/Saudara/i
-dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
-</p>
-
+<div class="content">
+<span>Assalamu'alaikum</span>
+<span>Tasyakuran Haji</span>
 </div>
 </div>
 
-<!-- TUAN -->
 <!-- JADWAL -->
 <div class="swiper-slide">
 <div class="bg"></div>
 
 <div class="content">
 
-  <!-- BOX JADWAL -->
-  <div class="jadwal-box">
+<div class="jadwal-box">
 
-    <div class="tanggal-box">
-      <div class="tgl">31</div>
-      <div class="bulan">MAR</div>
-      <div class="tahun">2026</div>
-    </div>
-
-    <div class="detail-box">
-      <h2>Resepsi</h2>
-      <p>⏰ 12:00 - 14:00 WITA</p>
-      <p>📍 Jl. Komputer No. 8 Karang Bedil, Mataram</p>
-
-      <button class="btn-map" onclick="map()">
-        PETUNJUK ARAH →
-      </button>
-    </div>
-
+  <div class="tanggal-box">
+    <div class="tgl">31</div>
+    <div class="bulan">MAR</div>
+    <div class="tahun">2026</div>
   </div>
 
-  <!-- ⏳ COUNTDOWN (DI LUAR BOX) -->
-  <div class="countdown-luar">
-    <p>Menuju Acara</p>
-    <div id="countdown"></div>
+  <div class="detail-box">
+    <h2>Resepsi</h2>
+    <p>12:00 - 14:00 WITA</p>
+    <p>Mataram</p>
+    <button class="btn-map" onclick="map()">Petunjuk Arah</button>
   </div>
 
 </div>
-</div>
 
-<div class="countdown-box">
+<div class="countdown-luar">
   <p>Menuju Acara</p>
   <div id="countdown"></div>
 </div>
 
-
-
-
-
-  
-</div>
-
-</div>
-</div>
-
-<!-- ACARA -->
-<div class="swiper-slide">
-<div class="bg"></div>
-<div class="content fade">
-<span>10 Oktober 2026</span>
-<span>10.00 WITA</span>
-<span>Denpasar</span>
 </div>
 </div>
 
 <!-- RSVP -->
 <div class="swiper-slide">
 <div class="bg"></div>
-<div class="content fade">
+<div class="content">
 <span>Konfirmasi Kehadiran</span>
 <button class="btn" onclick="wa()">WhatsApp</button>
 </div>
@@ -576,40 +283,33 @@ dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
 
 <div class="nav">
 <a onclick="go(0)" class="active">Home</a>
-<a onclick="go(1)">Tuan</a>
-<a onclick="go(2)">Acara</a>
-<a onclick="go(3)">RSVP</a>
+<a onclick="go(1)">Jadwal</a>
+<a onclick="go(2)">RSVP</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
 
+// nama tamu
 const p=new URLSearchParams(window.location.search)
 const namaParam=p.get('to')
 document.getElementById('nama').innerText =
   namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
 
+// buka
 function buka(){
   const musik=document.getElementById('musik')
   const opening=document.getElementById('opening')
+
   opening.style.opacity='0'
-  setTimeout(()=>opening.style.display='none',1000)
+  setTimeout(()=>opening.style.display='none',800)
+
   musik.muted=false
   musik.play().catch(()=>{})
 }
 
-function wa(){
-  const nama=namaParam||'Tamu'
-  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
-  window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
-}
-
-function toggleMusic(){
-  const m=document.getElementById('musik')
-  m.muted=!m.muted
-}
-
+// swiper
 const swiper=new Swiper('.swiper',{
   direction:'vertical',
   speed:900,
@@ -625,49 +325,44 @@ const swiper=new Swiper('.swiper',{
 
 function go(i){swiper.slideTo(i)}
 
+// maps
 function map(){
-  window.open("https://maps.google.com/?q=karang bedil mataram")
+  window.open("https://maps.google.com/?q=mataram")
 }
 
+// WA
+function wa(){
+  const nama=namaParam||'Tamu'
+  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir.`
+  window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
+}
+
+// countdown
+const countdownEl = document.getElementById("countdown");
 
 const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
 
 setInterval(function(){
 
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-
-  const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const detik = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML =
-    `${hari}H ${jam}J ${menit}M ${detik}D`;
-
-},1000);
-
-const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
-
-setInterval(function(){
+  if(!countdownEl) return;
 
   const now = new Date().getTime();
-  const distance = targetDate - now;
+  const d = targetDate - now;
 
-  const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const detik = Math.floor((distance % (1000 * 60)) / 1000);
+  const h = Math.floor(d/(1000*60*60*24));
+  const j = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m = Math.floor((d%(1000*60*60))/(1000*60));
+  const s = Math.floor((d%(1000*60))/1000);
 
-  document.getElementById("countdown").innerHTML = `
-    <span>${hari}<br>Hari</span>
-    <span>${jam}<br>Jam</span>
-    <span>${menit}<br>Menit</span>
-    <span>${detik}<br>Detik</span>
+  countdownEl.innerHTML = `
+    <span>${h}<br>Hari</span>
+    <span>${j}<br>Jam</span>
+    <span>${m}<br>Menit</span>
+    <span>${s}<br>Detik</span>
   `;
 
 },1000);
-  
+
 </script>
 
 </body>
