@@ -644,6 +644,7 @@ const swiper=new Swiper('.swiper',{
   direction:'vertical',
   speed:900,
   mousewheel:true,
+  touchReleaseOnEdges:true,
   on:{
     slideChange:function(){
       document.querySelectorAll('.nav a').forEach((el,i)=>{
@@ -652,9 +653,11 @@ const swiper=new Swiper('.swiper',{
     }
   }
 })
-
-function go(i){swiper.slideTo(i)}
-
+  
+function go(i){
+  swiper.slideTo(i, 800);
+}
+  
 function map(){
   window.open("https://maps.google.com/?q=karang bedil mataram")
 }
