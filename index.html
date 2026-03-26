@@ -401,7 +401,38 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.7);
 }
 
+.countdown-luar{
+  margin-top:25px;
+  text-align:center;
+  color:#fff;
+}
 
+.countdown-luar p{
+  font-size:14px;
+  margin-bottom:10px;
+  opacity:.8;
+}
+
+/* STYLE ANGKA PREMIUM */
+#countdown{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+
+#countdown span{
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+  padding:12px 10px;
+  border-radius:12px;
+  min-width:60px;
+  font-size:14px;
+  font-weight:600;
+  color:gold;
+  box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+  
 
 
 
@@ -476,28 +507,35 @@ dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
 
 <div class="content">
 
-<div class="jadwal-box">
+  <!-- BOX JADWAL -->
+  <div class="jadwal-box">
 
-  <!-- KIRI (TANGGAL) -->
-  <div class="tanggal-box">
-    <div class="tgl">07</div>
-    <div class="bulan">APR</div>
-    <div class="tahun">2026</div>
-  </div>
+    <div class="tanggal-box">
+      <div class="tgl">31</div>
+      <div class="bulan">MAR</div>
+      <div class="tahun">2026</div>
+    </div>
 
-  <!-- KANAN (DETAIL) -->
-  <div class="detail-box">
+    <div class="detail-box">
+      <h2>Resepsi</h2>
+      <p>⏰ 12:00 - 14:00 WITA</p>
+      <p>📍 Jl. Komputer No. 8 Karang Bedil, Mataram</p>
 
-    <h2>Resepsi</h2>
-
-    <p>⏰ 11:00 - 14:00 WITA</p>
-    <p>📍 Jl. Kerangkeng Desa Banyumulek (samping Pondok Pesantren Abnur Abhari) Kecamatan Kediri - Lobar</p>
-
-    <button class="btn-map" onclick="map()">
-      PETUNJUK ARAH →
-    </button>
+      <button class="btn-map" onclick="map()">
+        PETUNJUK ARAH →
+      </button>
+    </div>
 
   </div>
+
+  <!-- ⏳ COUNTDOWN (DI LUAR BOX) -->
+  <div class="countdown-luar">
+    <p>Menuju Acara</p>
+    <div id="countdown"></div>
+  </div>
+
+</div>
+</div>
 
 <div class="countdown-box">
   <p>Menuju Acara</p>
@@ -609,7 +647,26 @@ setInterval(function(){
 
 },1000);
 
+const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
 
+setInterval(function(){
+
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const detik = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = `
+    <span>${hari}<br>Hari</span>
+    <span>${jam}<br>Jam</span>
+    <span>${menit}<br>Menit</span>
+    <span>${detik}<br>Detik</span>
+  `;
+
+},1000);
   
 </script>
 
