@@ -52,6 +52,7 @@ html, body{
   color:#ddd;
   font-size:18px;
   letter-spacing:2px;
+  margin-bottom:10px;
 }
 
 .top-text h1{
@@ -72,8 +73,11 @@ html, body{
   text-align:center;
 }
 
+.kepada{color:#ccc;}
+
 .nama-tamu{
   color:gold;
+  text-shadow:0 0 10px rgba(255,215,0,.6);
   font-size:20px;
   font-weight:bold;
   margin:10px 0;
@@ -153,24 +157,10 @@ html, body{
   margin:6px 0;
 }
 
-/* COUPLE */
-.couple-vertical{
-  margin-top:25px;
-  max-width:360px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.row{display:flex;align-items:center;gap:12px;}
-.foto-besar{
-  width:90px;height:90px;border-radius:50%;
-  object-fit:cover;border:3px solid gold;
-}
-.nama{color:#fff;font-weight:600;}
-.and{color:gold;font-size:24px;text-align:center;}
-
+/* ========================= */
 /* JADWAL */
+/* ========================= */
+
 .jadwal-box{
   width:100%;
   max-width:360px;
@@ -179,6 +169,7 @@ html, body{
   overflow:hidden;
   backdrop-filter:blur(12px);
   background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.3);
 }
 
 .tanggal-box{
@@ -189,19 +180,21 @@ html, body{
 }
 
 .tgl{font-size:42px;font-weight:bold;color:#000;}
-.bulan,.tahun{color:#000;}
+.bulan,.tahun{font-size:16px;color:#000;}
 
 .detail-box{flex:1;padding:20px;color:#fff;}
 
 .btn-map{
-  margin-top:10px;
-  padding:10px;
+  margin-top:15px;
+  padding:12px;
   width:100%;
   border:none;
-  border-radius:20px;
+  border-radius:25px;
+  background:#fff;
+  font-weight:bold;
 }
 
-/* COUNTDOWN */
+/* COUNTDOWN LUAR */
 .countdown-luar{
   margin-top:25px;
   text-align:center;
@@ -211,29 +204,16 @@ html, body{
 #countdown{
   display:flex;
   justify-content:center;
-  gap:10px;
+  gap:12px;
 }
 
 #countdown span{
-  background:rgba(255,255,255,0.15);
-  padding:10px;
-  border-radius:10px;
+  background:rgba(255,255,255,0.12);
+  padding:12px;
+  border-radius:12px;
   min-width:60px;
   color:gold;
 }
-
-/* NAV */
-.nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  display:flex;
-  justify-content:space-around;
-  background:rgba(0,0,0,.8);
-}
-
-.nav a{color:#aaa;padding:10px;}
-.nav a.active{color:gold;}
 
 </style>
 </head>
@@ -250,7 +230,7 @@ html, body{
   </div>
 
   <div class="guest-box">
-    <p>Kepada Yth :</p>
+    <p class="kepada">Kepada Yth. Bapak/Ibu/Sdr/i :</p>
     <p id="nama" class="nama-tamu"></p>
     <button class="btn" onclick="buka()">Buka Undangan</button>
   </div>
@@ -267,35 +247,38 @@ html, body{
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content">
-<span>Assalamu'alaikum</span>
-<span>Tasyakuran Haji</span>
+<span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ</span>
+<span>Tasyakuran Walimatus Safar Haji</span>
 </div>
 </div>
 
 <!-- JADWAL -->
 <div class="swiper-slide">
 <div class="bg"></div>
+
 <div class="content">
 
-<div class="jadwal-box">
-  <div class="tanggal-box">
-    <div class="tgl">31</div>
-    <div class="bulan">MAR</div>
-    <div class="tahun">2026</div>
+  <div class="jadwal-box">
+    <div class="tanggal-box">
+      <div class="tgl">31</div>
+      <div class="bulan">MAR</div>
+      <div class="tahun">2026</div>
+    </div>
+
+    <div class="detail-box">
+      <h2>Resepsi</h2>
+      <p>⏰ 12:00 - 14:00 WITA</p>
+      <p>📍 Jl. Komputer No. 8 Karang Bedil, Mataram</p>
+
+      <button class="btn-map" onclick="map()">PETUNJUK ARAH →</button>
+    </div>
   </div>
 
-  <div class="detail-box">
-    <h2>Resepsi</h2>
-    <p>12:00 - 14:00 WITA</p>
-    <p>Mataram</p>
-    <button class="btn-map" onclick="map()">Petunjuk Arah</button>
+  <!-- COUNTDOWN -->
+  <div class="countdown-luar">
+    <p>Menuju Acara</p>
+    <div id="countdown"></div>
   </div>
-</div>
-
-<div class="countdown-luar">
-  <p>Menuju Acara</p>
-  <div id="countdown"></div>
-</div>
 
 </div>
 </div>
@@ -312,12 +295,6 @@ html, body{
 </div>
 </div>
 
-<div class="nav">
-<a onclick="go(0)" class="active">Home</a>
-<a onclick="go(1)">Jadwal</a>
-<a onclick="go(2)">RSVP</a>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
@@ -330,27 +307,13 @@ document.getElementById('nama').innerText =
 function buka(){
   const musik=document.getElementById('musik')
   const opening=document.getElementById('opening')
-
   opening.style.opacity='0'
   setTimeout(()=>opening.style.display='none',800)
-
   musik.muted=false
   musik.play().catch(()=>{})
 }
 
-const swiper=new Swiper('.swiper',{
-  direction:'vertical',
-  mousewheel:true,
-  on:{
-    slideChange:function(){
-      document.querySelectorAll('.nav a').forEach((el,i)=>{
-        el.classList.toggle('active',i===this.activeIndex)
-      })
-    }
-  }
-})
-
-function go(i){swiper.slideTo(i)}
+new Swiper('.swiper',{direction:'vertical',mousewheel:true})
 
 function map(){
   window.open("https://maps.google.com/?q=mataram")
@@ -361,11 +324,12 @@ function wa(){
   window.open(`https://wa.me/6281234567890?text=Saya ${nama} akan hadir`)
 }
 
-const countdownEl=document.getElementById("countdown")
+/* COUNTDOWN */
 const target=new Date("Mar 31, 2026 12:00:00").getTime()
 
 setInterval(()=>{
-  if(!countdownEl) return
+  const el=document.getElementById("countdown")
+  if(!el) return
 
   const now=new Date().getTime()
   const d=target-now
@@ -375,7 +339,7 @@ setInterval(()=>{
   const m=Math.floor((d%(1000*60*60))/(1000*60))
   const s=Math.floor((d%(1000*60))/1000)
 
-  countdownEl.innerHTML=`
+  el.innerHTML=`
     <span>${h}<br>Hari</span>
     <span>${j}<br>Jam</span>
     <span>${m}<br>Menit</span>
