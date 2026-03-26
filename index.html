@@ -31,14 +31,12 @@ html, body{
   flex-direction:column;
   justify-content:space-between;
   z-index:9999;
-  transition:1s;
 }
 
 .overlay{
   position:absolute;
   inset:0;
   background:rgba(0,0,0,.35);
-  pointer-events:none; /* 🔥 FIX */
 }
 
 .top-text{
@@ -64,7 +62,7 @@ html, body{
 /* BOX TAMU */
 .guest-box{
   position:relative;
-  z-index:5;
+  z-index:2;
   margin:20px;
   margin-bottom:40px;
   padding:25px;
@@ -141,10 +139,13 @@ html, body{
   z-index:2;
   width:100%;
   height:100%;
+
   display:flex;
   flex-direction:column;
+
   justify-content:center;
   align-items:center;
+
   text-align:center;
   padding:20px;
   padding-bottom:80px;
@@ -158,8 +159,167 @@ html, body{
 }
 
 /* ========================= */
-/* JADWAL */
+/* 💎 COUPLE PREMIUM */
 /* ========================= */
+
+.couple-vertical{
+  margin-top:25px;
+  width:100%;
+  max-width:360px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  opacity:0;
+}
+
+.row.left{
+  justify-content:flex-start;
+  animation:slideLeft .8s forwards;
+}
+
+.row.right{
+  justify-content:flex-end;
+  animation:slideRight .8s forwards;
+  animation-delay:.3s;
+}
+
+.row.right .nama{
+  order:1;
+  text-align:right;
+}
+
+.row.right img{
+  order:2;
+}
+
+/* FOTO */
+.foto-besar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid gold;
+  animation:glow 3s infinite;
+}
+
+/* GLOW */
+@keyframes glow{
+  0%{box-shadow:0 0 5px rgba(255,215,0,.4);}
+  50%{box-shadow:0 0 20px rgba(255,215,0,.9);}
+  100%{box-shadow:0 0 5px rgba(255,215,0,.4);}
+}
+
+/* NAMA */
+.nama{
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  text-shadow:0 0 10px rgba(255,215,0,.6);
+}
+
+/* & */
+.and{
+  color:gold;
+  font-size:26px;
+  font-weight:bold;
+  text-align:center;
+  position:relative;
+}
+
+.and::before,
+.and::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  width:40px;
+  height:1px;
+  background:gold;
+  opacity:.6;
+}
+
+.and::before{left:-50px;}
+.and::after{right:-50px;}
+
+/* ANIMASI */
+@keyframes slideLeft{
+  from{opacity:0; transform:translateX(-50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes slideRight{
+  from{opacity:0; transform:translateX(50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+/* ✅ PENUTUP */
+.penutup{
+  margin-top:15px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  line-height:1.5;
+  max-width:320px;
+  opacity:.9;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100vw;
+  height:70px;
+  background:rgba(0,0,0,.85);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:999;
+}
+
+.nav a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:12px;
+}
+
+.nav a.active{color:gold;}
+
+/* MUTE */
+.mute{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:9999;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:45px;
+  height:45px;
+}
+
+/* ANIMASI TEXT */
+.fade span{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp .8s forwards;
+}
+
+.fade span:nth-child(1){animation-delay:.3s}
+.fade span:nth-child(2){animation-delay:.6s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+
 
 .jadwal-box{
   width:100%;
@@ -170,20 +330,47 @@ html, body{
   backdrop-filter:blur(12px);
   background:rgba(255,255,255,0.1);
   border:1px solid rgba(255,255,255,0.3);
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  animation:fadeUp 1s ease;
 }
 
+/* KIRI */
 .tanggal-box{
   width:110px;
   background:rgba(255,255,255,0.2);
   text-align:center;
-  padding:15px;
+  padding:15px 10px;
 }
 
-.tgl{font-size:42px;font-weight:bold;color:#000;}
-.bulan,.tahun{font-size:16px;color:#000;}
+.tgl{
+  font-size:42px;
+  font-weight:bold;
+  color:#000;
+}
 
-.detail-box{flex:1;padding:20px;color:#fff;}
+.bulan, .tahun{
+  font-size:16px;
+  color:#000;
+}
 
+/* KANAN */
+.detail-box{
+  flex:1;
+  padding:20px;
+  color:#fff;
+}
+
+.detail-box h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.detail-box p{
+  font-size:14px;
+  margin:5px 0;
+}
+
+/* BUTTON MAP */
 .btn-map{
   margin-top:15px;
   padding:12px;
@@ -194,27 +381,32 @@ html, body{
   font-weight:bold;
 }
 
-/* COUNTDOWN LUAR */
-.countdown-luar{
-  margin-top:25px;
+.countdown-box{
+  margin-top:20px;
   text-align:center;
   color:#fff;
 }
 
+.countdown-box p{
+  font-size:14px;
+  margin-bottom:8px;
+  opacity:.8;
+}
+
 #countdown{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-}
-
-#countdown span{
-  background:rgba(255,255,255,0.12);
-  padding:12px;
-  border-radius:12px;
-  min-width:60px;
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:1px;
   color:gold;
+  text-shadow:0 0 10px rgba(255,215,0,.7);
 }
 
+
+
+
+
+
+  
 </style>
 </head>
 
@@ -240,59 +432,115 @@ html, body{
 <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
 </audio>
 
+<button class="mute" onclick="toggleMusic()">🔊</button>
+
 <div class="swiper">
 <div class="swiper-wrapper">
 
 <!-- HOME -->
 <div class="swiper-slide">
 <div class="bg"></div>
-<div class="content">
-<span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ</span>
-<span>Tasyakuran Walimatus Safar Haji</span>
+<div class="content fade">
+
+<span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</span>
+<span>Dengan memohon ridho Allah SWT kami bermaksud menyelenggarakan Tasyakuran Walimatus Safar Haji</span>
+
+<div class="couple-vertical">
+
+  <div class="row left">
+    <img src="foto1.jpg" class="foto-besar">
+    <div class="nama">Erwan Kurniawan</div>
+  </div>
+
+  <div class="and">&</div>
+
+  <div class="row right">
+    <div class="nama">Rr. Rizqomariyati</div>
+    <img src="foto2.jpg" class="foto-besar">
+  </div>
+
+</div>
+
+<p class="penutup">
+Merupakan suatu kehormatan dan kebahagiaan kami, apabila Bapak/Ibu/Saudara/i
+dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
+</p>
+
 </div>
 </div>
 
+<!-- TUAN -->
 <!-- JADWAL -->
 <div class="swiper-slide">
 <div class="bg"></div>
 
 <div class="content">
 
-  <div class="jadwal-box">
-    <div class="tanggal-box">
-      <div class="tgl">31</div>
-      <div class="bulan">MAR</div>
-      <div class="tahun">2026</div>
-    </div>
+<div class="jadwal-box">
 
-    <div class="detail-box">
-      <h2>Resepsi</h2>
-      <p>⏰ 12:00 - 14:00 WITA</p>
-      <p>📍 Jl. Komputer No. 8 Karang Bedil, Mataram</p>
-
-      <button class="btn-map" onclick="map()">PETUNJUK ARAH →</button>
-    </div>
+  <!-- KIRI (TANGGAL) -->
+  <div class="tanggal-box">
+    <div class="tgl">07</div>
+    <div class="bulan">APR</div>
+    <div class="tahun">2026</div>
   </div>
 
-  <!-- COUNTDOWN -->
-  <div class="countdown-luar">
-    <p>Menuju Acara</p>
-    <div id="countdown"></div>
+  <!-- KANAN (DETAIL) -->
+  <div class="detail-box">
+
+    <h2>Resepsi</h2>
+
+    <p>⏰ 11:00 - 14:00 WITA</p>
+    <p>📍 Jl. Kerangkeng Desa Banyumulek (samping Pondok Pesantren Abnur Abhari) Kecamatan Kediri - Lobar</p>
+
+    <button class="btn-map" onclick="map()">
+      PETUNJUK ARAH →
+    </button>
+
   </div>
 
+<div class="countdown-box">
+  <p>Menuju Acara</p>
+  <div id="countdown"></div>
+</div>
+
+
+
+
+
+  
+</div>
+
+</div>
+</div>
+
+<!-- ACARA -->
+<div class="swiper-slide">
+<div class="bg"></div>
+<div class="content fade">
+<span>10 Oktober 2026</span>
+<span>10.00 WITA</span>
+<span>Denpasar</span>
 </div>
 </div>
 
 <!-- RSVP -->
 <div class="swiper-slide">
 <div class="bg"></div>
-<div class="content">
+<div class="content fade">
 <span>Konfirmasi Kehadiran</span>
 <button class="btn" onclick="wa()">WhatsApp</button>
 </div>
 </div>
 
 </div>
+</div>
+
+<div class="nav">
+<a onclick="go(0)" class="active">Home</a>
+<a onclick="go(1)">Tuan</a>
+<a onclick="go(2)">Acara</a>
+<a onclick="go(3)">RSVP</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -308,45 +556,61 @@ function buka(){
   const musik=document.getElementById('musik')
   const opening=document.getElementById('opening')
   opening.style.opacity='0'
-  setTimeout(()=>opening.style.display='none',800)
+  setTimeout(()=>opening.style.display='none',1000)
   musik.muted=false
   musik.play().catch(()=>{})
 }
 
-new Swiper('.swiper',{direction:'vertical',mousewheel:true})
-
-function map(){
-  window.open("https://maps.google.com/?q=mataram")
-}
-
 function wa(){
   const nama=namaParam||'Tamu'
-  window.open(`https://wa.me/6281234567890?text=Saya ${nama} akan hadir`)
+  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
+  window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
 }
 
-/* COUNTDOWN */
-const target=new Date("Mar 31, 2026 12:00:00").getTime()
+function toggleMusic(){
+  const m=document.getElementById('musik')
+  m.muted=!m.muted
+}
 
-setInterval(()=>{
-  const el=document.getElementById("countdown")
-  if(!el) return
+const swiper=new Swiper('.swiper',{
+  direction:'vertical',
+  speed:900,
+  mousewheel:true,
+  on:{
+    slideChange:function(){
+      document.querySelectorAll('.nav a').forEach((el,i)=>{
+        el.classList.toggle('active',i===this.activeIndex)
+      })
+    }
+  }
+})
 
-  const now=new Date().getTime()
-  const d=target-now
+function go(i){swiper.slideTo(i)}
 
-  const h=Math.floor(d/(1000*60*60*24))
-  const j=Math.floor((d%(1000*60*60*24))/(1000*60*60))
-  const m=Math.floor((d%(1000*60*60))/(1000*60))
-  const s=Math.floor((d%(1000*60))/1000)
+function map(){
+  window.open("https://maps.google.com/?q=karang bedil mataram")
+}
 
-  el.innerHTML=`
-    <span>${h}<br>Hari</span>
-    <span>${j}<br>Jam</span>
-    <span>${m}<br>Menit</span>
-    <span>${s}<br>Detik</span>
-  `
-},1000)
 
+const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
+
+setInterval(function(){
+
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const detik = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    `${hari}H ${jam}J ${menit}M ${detik}D`;
+
+},1000);
+
+
+  
 </script>
 
 </body>
