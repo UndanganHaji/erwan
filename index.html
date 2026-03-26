@@ -139,10 +139,13 @@ html, body{
   z-index:2;
   width:100%;
   height:100%;
+
   display:flex;
   flex-direction:column;
+
   justify-content:center;
   align-items:center;
+
   text-align:center;
   padding:20px;
   padding-bottom:80px;
@@ -155,7 +158,10 @@ html, body{
   margin:6px 0;
 }
 
-/* COUPLE */
+/* ========================= */
+/* 💎 COUPLE PREMIUM */
+/* ========================= */
+
 .couple-vertical{
   margin-top:25px;
   width:100%;
@@ -172,12 +178,27 @@ html, body{
   opacity:0;
 }
 
-.row.left{justify-content:flex-start; animation:slideLeft .8s forwards;}
-.row.right{justify-content:flex-end; animation:slideRight .8s forwards; animation-delay:.3s;}
+.row.left{
+  justify-content:flex-start;
+  animation:slideLeft .8s forwards;
+}
 
-.row.right .nama{order:1;text-align:right;}
-.row.right img{order:2;}
+.row.right{
+  justify-content:flex-end;
+  animation:slideRight .8s forwards;
+  animation-delay:.3s;
+}
 
+.row.right .nama{
+  order:1;
+  text-align:right;
+}
+
+.row.right img{
+  order:2;
+}
+
+/* FOTO */
 .foto-besar{
   width:90px;
   height:90px;
@@ -187,12 +208,14 @@ html, body{
   animation:glow 3s infinite;
 }
 
+/* GLOW */
 @keyframes glow{
   0%{box-shadow:0 0 5px rgba(255,215,0,.4);}
   50%{box-shadow:0 0 20px rgba(255,215,0,.9);}
   100%{box-shadow:0 0 5px rgba(255,215,0,.4);}
 }
 
+/* NAMA */
 .nama{
   color:#fff;
   font-size:18px;
@@ -200,6 +223,7 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.6);
 }
 
+/* & */
 .and{
   color:gold;
   font-size:26px;
@@ -208,7 +232,8 @@ html, body{
   position:relative;
 }
 
-.and::before,.and::after{
+.and::before,
+.and::after{
   content:'';
   position:absolute;
   top:50%;
@@ -221,19 +246,27 @@ html, body{
 .and::before{left:-50px;}
 .and::after{right:-50px;}
 
+/* ANIMASI */
 @keyframes slideLeft{
   from{opacity:0; transform:translateX(-50px);}
   to{opacity:1; transform:translateX(0);}
 }
+
 @keyframes slideRight{
   from{opacity:0; transform:translateX(50px);}
   to{opacity:1; transform:translateX(0);}
 }
 
+/* ✅ PENUTUP */
 .penutup{
   margin-top:15px;
   color:#fff;
   font-size:16px;
+  text-align:center;
+  line-height:1.5;
+  max-width:320px;
+  opacity:.9;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
 }
 
 /* NAV */
@@ -251,10 +284,43 @@ html, body{
   z-index:999;
 }
 
-.nav a{color:#aaa;text-decoration:none;font-size:12px;}
+.nav a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:12px;
+}
+
 .nav a.active{color:gold;}
 
-/* JADWAL */
+/* MUTE */
+.mute{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:9999;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:45px;
+  height:45px;
+}
+
+/* ANIMASI TEXT */
+.fade span{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp .8s forwards;
+}
+
+.fade span:nth-child(1){animation-delay:.3s}
+.fade span:nth-child(2){animation-delay:.6s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+
+
 .jadwal-box{
   width:100%;
   max-width:360px;
@@ -263,41 +329,84 @@ html, body{
   overflow:hidden;
   backdrop-filter:blur(12px);
   background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  animation:fadeUp 1s ease;
 }
 
+/* KIRI */
 .tanggal-box{
   width:110px;
   background:rgba(255,255,255,0.2);
   text-align:center;
-  padding:15px;
+  padding:15px 10px;
 }
 
+.tgl{
+  font-size:42px;
+  font-weight:bold;
+  color:#000;
+}
+
+.bulan, .tahun{
+  font-size:16px;
+  color:#000;
+}
+
+/* KANAN */
 .detail-box{
   flex:1;
   padding:20px;
   color:#fff;
 }
 
+.detail-box h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.detail-box p{
+  font-size:14px;
+  margin:5px 0;
+}
+
+/* BUTTON MAP */
 .btn-map{
   margin-top:15px;
   padding:12px;
   width:100%;
-  border-radius:25px;
   border:none;
+  border-radius:25px;
+  background:#fff;
+  font-weight:bold;
 }
 
-/* ✅ COUNTDOWN */
 .countdown-box{
-  margin-top:25px;
+  margin-top:20px;
   text-align:center;
   color:#fff;
 }
 
-#countdown{
-  font-size:20px;
-  color:gold;
+.countdown-box p{
+  font-size:14px;
+  margin-bottom:8px;
+  opacity:.8;
 }
 
+#countdown{
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:1px;
+  color:gold;
+  text-shadow:0 0 10px rgba(255,215,0,.7);
+}
+
+
+
+
+
+
+  
 </style>
 </head>
 
@@ -306,12 +415,14 @@ html, body{
 <!-- OPENING -->
 <div id="opening">
   <div class="overlay"></div>
+
   <div class="top-text">
     <p class="small">Walimatus Safar Haji</p>
     <h1>Bapak & Ibu Erwan</h1>
   </div>
+
   <div class="guest-box">
-    <p class="kepada">Kepada Yth:</p>
+    <p class="kepada">Kepada Yth. Bapak/Ibu/Sdr/i :</p>
     <p id="nama" class="nama-tamu"></p>
     <button class="btn" onclick="buka()">Buka Undangan</button>
   </div>
@@ -321,52 +432,170 @@ html, body{
 <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
 </audio>
 
+<button class="mute" onclick="toggleMusic()">🔊</button>
+
 <div class="swiper">
 <div class="swiper-wrapper">
 
 <!-- HOME -->
 <div class="swiper-slide">
 <div class="bg"></div>
-<div class="content">
-<span>Assalamu'alaikum</span>
+<div class="content fade">
+
+<span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</span>
+<span>Dengan memohon ridho Allah SWT kami bermaksud menyelenggarakan Tasyakuran Walimatus Safar Haji</span>
+
+<div class="couple-vertical">
+
+  <div class="row left">
+    <img src="foto1.jpg" class="foto-besar">
+    <div class="nama">Erwan Kurniawan</div>
+  </div>
+
+  <div class="and">&</div>
+
+  <div class="row right">
+    <div class="nama">Rr. Rizqomariyati</div>
+    <img src="foto2.jpg" class="foto-besar">
+  </div>
+
+</div>
+
+<p class="penutup">
+Merupakan suatu kehormatan dan kebahagiaan kami, apabila Bapak/Ibu/Saudara/i
+dapat hadir di acara tasyakuran ini. Kami ucapkan terima kasih
+</p>
+
 </div>
 </div>
 
+<!-- TUAN -->
 <!-- JADWAL -->
 <div class="swiper-slide">
 <div class="bg"></div>
+
 <div class="content">
 
 <div class="jadwal-box">
+
+  <!-- KIRI (TANGGAL) -->
   <div class="tanggal-box">
     <div class="tgl">07</div>
-    <div>APR</div>
-    <div>2026</div>
+    <div class="bulan">APR</div>
+    <div class="tahun">2026</div>
   </div>
 
+  <!-- KANAN (DETAIL) -->
   <div class="detail-box">
-    <h2>Resepsi</h2>
-    <p>11:00 - 14:00 WITA</p>
-    <button class="btn-map">Map</button>
-  </div>
-</div>
 
-<!-- ✅ PINDAH KE LUAR -->
+    <h2>Resepsi</h2>
+
+    <p>⏰ 11:00 - 14:00 WITA</p>
+    <p>📍 Jl. Kerangkeng Desa Banyumulek (samping Pondok Pesantren Abnur Abhari) Kecamatan Kediri - Lobar</p>
+
+    <button class="btn-map" onclick="map()">
+      PETUNJUK ARAH →
+    </button>
+
+  </div>
+
 <div class="countdown-box">
   <p>Menuju Acara</p>
   <div id="countdown"></div>
 </div>
 
+
+
+
+
+  
+</div>
+
+</div>
+</div>
+
+<!-- ACARA -->
+<div class="swiper-slide">
+<div class="bg"></div>
+<div class="content fade">
+<span>10 Oktober 2026</span>
+<span>10.00 WITA</span>
+<span>Denpasar</span>
+</div>
+</div>
+
+<!-- RSVP -->
+<div class="swiper-slide">
+<div class="bg"></div>
+<div class="content fade">
+<span>Konfirmasi Kehadiran</span>
+<button class="btn" onclick="wa()">WhatsApp</button>
 </div>
 </div>
 
 </div>
 </div>
+
+<div class="nav">
+<a onclick="go(0)" class="active">Home</a>
+<a onclick="go(1)">Tuan</a>
+<a onclick="go(2)">Acara</a>
+<a onclick="go(3)">RSVP</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+
+const p=new URLSearchParams(window.location.search)
+const namaParam=p.get('to')
+document.getElementById('nama').innerText =
+  namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
+
+function buka(){
+  const musik=document.getElementById('musik')
+  const opening=document.getElementById('opening')
+  opening.style.opacity='0'
+  setTimeout(()=>opening.style.display='none',1000)
+  musik.muted=false
+  musik.play().catch(()=>{})
+}
+
+function wa(){
+  const nama=namaParam||'Tamu'
+  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
+  window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
+}
+
+function toggleMusic(){
+  const m=document.getElementById('musik')
+  m.muted=!m.muted
+}
+
+const swiper=new Swiper('.swiper',{
+  direction:'vertical',
+  speed:900,
+  mousewheel:true,
+  on:{
+    slideChange:function(){
+      document.querySelectorAll('.nav a').forEach((el,i)=>{
+        el.classList.toggle('active',i===this.activeIndex)
+      })
+    }
+  }
+})
+
+function go(i){swiper.slideTo(i)}
+
+function map(){
+  window.open("https://maps.google.com/?q=karang bedil mataram")
+}
+
+
 const targetDate = new Date("Mar 31, 2026 12:00:00").getTime();
 
 setInterval(function(){
+
   const now = new Date().getTime();
   const distance = targetDate - now;
 
@@ -377,7 +606,11 @@ setInterval(function(){
 
   document.getElementById("countdown").innerHTML =
     `${hari}H ${jam}J ${menit}M ${detik}D`;
+
 },1000);
+
+
+  
 </script>
 
 </body>
