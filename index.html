@@ -440,7 +440,21 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.6); /* opsional, jika ingin efek glow */
 }
 
+.video-box{
+  width:100%;
+  max-width:360px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+  animation:fadeUp 1s ease;
+}
 
+.video-box video{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:20px;
+}
   
 </style>
 </head>
@@ -613,50 +627,24 @@ berkenan hadir pada acara kami.</span>
 
 
   
-<!-- KESAN & KONFIRMASI -->
+<!-- VIDEO -->
 <div class="swiper-slide">
 <div class="bg"></div>
 
 <div class="content">
 
-<h2 style="color:#fff; margin-bottom:10px;">Kirim Ucapan</h2>
+<h2 style="color:#fff; margin-bottom:15px;">
+  Video Kenangan
+</h2>
 
-<textarea id="pesan" placeholder="Tulis ucapan..."
-style="
-width:100%;
-max-width:350px;
-height:80px;
-border-radius:10px;
-border:none;
-padding:10px;
-margin-bottom:10px;
-"></textarea>
+<div class="video-box">
 
-<input id="namaForm" placeholder="Nama"
-style="
-width:100%;
-max-width:350px;
-border-radius:10px;
-border:none;
-padding:10px;
-margin-bottom:10px;
-">
+  <video controls autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Browser tidak mendukung video.
+  </video>
 
-<div style="color:#fff; margin:10px 0;">
-  <label><input type="radio" name="hadir" value="Hadir"> Saya akan hadir</label><br>
-  <label><input type="radio" name="hadir" value="Tidak"> Maaf belum bisa hadir</label>
 </div>
-
-<button class="btn" onclick="kirimUcapan()">Kirim</button>
-
-<!-- LIST UCAPAN -->
-<div id="listUcapan" style="
-margin-top:20px;
-width:100%;
-max-width:350px;
-text-align:left;
-color:#fff;
-"></div>
 
 </div>
 </div>
@@ -741,69 +729,7 @@ document.getElementById("menit").innerText = menit;
 document.getElementById("detik").innerText = detik;
 },1000);
 
-
-
-
-function kirimUcapan(){
-  const nama = document.getElementById('namaForm').value
-  const pesan = document.getElementById('pesan').value
-  const hadir = document.querySelector('input[name="hadir"]:checked')
-
-  if(!nama || !pesan || !hadir){
-    alert("Lengkapi dulu ya bosque 🙏")
-    return
-  }
-
-  const data = {
-    nama: nama,
-    pesan: pesan,
-    hadir: hadir.value,
-    waktu: new Date().toLocaleString()
-  }
-
-  let ucapan = JSON.parse(localStorage.getItem("ucapan")) || []
-  ucapan.unshift(data)
-
-  localStorage.setItem("ucapan", JSON.stringify(ucapan))
-
-  tampilUcapan()
-
-  // reset form
-  document.getElementById('namaForm').value = ""
-  document.getElementById('pesan').value = ""
-  document.querySelectorAll('input[name="hadir"]').forEach(el=>el.checked=false)
-}
-
-function tampilUcapan(){
-  const list = document.getElementById("listUcapan")
-  const data = JSON.parse(localStorage.getItem("ucapan")) || []
-
-  list.innerHTML = "<h3 style='margin-bottom:10px;'>Ucapan</h3>"
-
-  data.forEach(d=>{
-    list.innerHTML += `
-      <div style="
-        margin-bottom:15px;
-        padding:10px;
-        border-radius:10px;
-        background:rgba(255,255,255,0.1);
-      ">
-        <b>${d.nama}</b> <small style="opacity:.7;">(${d.waktu})</small><br>
-        <span>${d.pesan}</span><br>
-        <small style="color:gold;">${d.hadir}</small>
-      </div>
-    `
-  })
-}
-
-// LOAD SAAT BUKA
-tampilUcapan()
-
-
-
-
-
-  
+ 
 </script>
 
 </body>
