@@ -453,6 +453,39 @@ html, body{
   display:block;
   border-radius:20px;
 }
+
+.couple-sejajar{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+/* FOTO PNG */
+.foto-png{
+  width:140px;
+  height:auto;
+  object-fit:contain;
+
+  /* efek glow premium */
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))
+         drop-shadow(0 0 10px rgba(255,215,0,.4));
+
+  animation:fadeUp 1s ease;
+}
+
+/* POSISI */
+.kiri{
+  transform:translateX(-10px);
+}
+
+.kanan{
+  transform:translateX(10px);
+}
+
+
+
   
 </style>
 </head>
@@ -608,7 +641,7 @@ berkenan hadir pada acara kami.</span>
 <!-- FOTO SEJAJAR -->
 <div class="couple-sejajar">
 
-  <img src="foto3.png" class="foto-besar foto-kiri">
+  <img src="foto3.png" class="foto-png kiri"> 
   <img src="foto2.jpg" class="foto-besar foto-kanan">
 
 </div>
