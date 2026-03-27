@@ -639,10 +639,8 @@ berkenan hadir pada acara kami.</span>
 
 <div class="video-box">
 
-  <video controls autoplay muted loop playsinline>
-    <source src="video.mp4" type="video/mp4">
-    Browser tidak mendukung video.
-  </video>
+  <video id="videoHaji" controls muted playsinline>
+  <source src="video.mp4" type="video/mp4"></video>
 
 </div>
 
@@ -729,6 +727,14 @@ document.getElementById("menit").innerText = menit;
 document.getElementById("detik").innerText = detik;
 },1000);
 
+
+ document.addEventListener("click", function () {
+  const v = document.getElementById("videoHaji");
+  if(v){
+    v.muted = false;
+    v.play().catch(()=>{});
+  }
+}, { once: true }); 
  
 </script>
 
