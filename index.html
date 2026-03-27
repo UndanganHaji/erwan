@@ -440,6 +440,57 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.6); /* opsional, jika ingin efek glow */
 }
 
+  
+form{
+  width:100%;
+  max-width:350px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+textarea, input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+.kehadiran{
+  text-align:left;
+  font-size:13px;
+}
+
+.radio-group{
+  margin-top:5px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.btn-kirim{
+  background:#333;
+  color:#fff;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+}
+
+/* LIST UCAPAN */
+#listUcapan{
+  margin-top:20px;
+  width:100%;
+  max-width:350px;
+}
+
+.ucapan-item{
+  background:rgba(255,255,255,0.1);
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  text-align:left;
+}
 
   
 </style>
@@ -618,10 +669,39 @@ berkenan hadir pada acara kami.</span>
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
-<span>Konfirmasi Kehadiran</span>
-<button class="btn" onclick="wa()">WhatsApp</button>
-</div>
-</div>
+
+<h2>Kirim Ucapan & Konfirmasi</h2>
+
+<form id="formUcapan">
+
+  <textarea placeholder="Tulis ucapan..." required></textarea>
+
+  <input type="text" placeholder="Nama*" required>
+
+  <!-- KEHADIRAN -->
+  <div class="kehadiran">
+    <label>KEHADIRAN</label>
+
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="hadir" value="Hadir" required>
+        Saya akan hadir
+      </label>
+
+      <label>
+        <input type="radio" name="hadir" value="Tidak Hadir">
+        Maaf belum bisa hadir
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-kirim">Send</button>
+
+</form>
+
+<!-- LIST UCAPAN -->
+<div id="listUcapan"></div>
+  
 
 </div>
 </div>
@@ -703,6 +783,30 @@ document.getElementById("menit").innerText = menit;
 document.getElementById("detik").innerText = detik;
 },1000);
 
+
+const form = document.getElementById("formUcapan");
+const list = document.getElementById("listUcapan");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const pesan = form.querySelector("textarea").value;
+  const nama = form.querySelector("input[type='text']").value;
+  const hadir = form.querySelector("input[name='hadir']:checked").value;
+
+  const item = document.createElement("div");
+  item.classList.add("ucapan-item");
+
+  item.innerHTML = `
+    <strong>${nama}</strong><br>
+    <small>${hadir}</small><br>
+    <p>${pesan}</p>
+  `;
+
+  list.prepend(item);
+
+  form.reset();
+});
 
   
 </script>
