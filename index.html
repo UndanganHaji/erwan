@@ -17,10 +17,9 @@
 html, body{
   width:100%;
   height:100%;
-  overflow-x:hidden; /* ⬅️ hanya horizontal */
+  overflow:hidden;
   background:#000;
   font-family:Poppins,sans-serif;
-  
 }
 
 /* OPENING */
@@ -95,7 +94,7 @@ html, body{
 
 /* SWIPER */
 .swiper, .swiper-wrapper, .swiper-slide{
-  width:100%;
+  width:100vw;
   height:100dvh;
 }
 
@@ -274,28 +273,22 @@ html, body{
 .nav{
   position:fixed;
   bottom:0;
-  left:0;
-  width:100%;
+  left:50%;
+  transform:translateX(-50%);
+  width:100vw;
   height:70px;
   background:rgba(0,0,0,.85);
-
   display:flex;
   justify-content:space-around;
   align-items:center;
-
-  z-index:99999;
-  backdrop-filter:blur(10px);
+  z-index:999;
 }
 
 .nav a{
-  flex:1;
-  text-align:center;
   color:#aaa;
   text-decoration:none;
   font-size:12px;
-  padding:10px 0;
 }
-
 
 .nav a.active{color:gold;}
 
@@ -447,111 +440,9 @@ html, body{
   text-shadow:0 0 10px rgba(255,215,0,.6); /* opsional, jika ingin efek glow */
 }
 
-  
-form{
-  width:100%;
-  max-width:350px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-textarea, input{
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  outline:none;
-  font-size:14px;
-}
-
-.kehadiran{
-  text-align:left;
-  font-size:13px;
-  color: #fff;
-}
-
-.radio-group{
-  margin-top:5px;
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-  color: #fff;
-}
-
-.btn-kirim{
-  background:#333;
-  color:#fff;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-}
-
-/* LIST UCAPAN */
-#listUcapan{
-  margin-top:20px;
-  width:100%;
-  max-width:350px;
-  color: #fff;
-}
-
-.ucapan-item{
-  background:rgba(255,255,255,0.1);
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:10px;
-  text-align:left;
-  color: #fff;
-}
 
   
-
-
-
-
-
-/* ========================= */
-/* 💎 FOTO SEJAJAR FIX */
-/* ========================= */
-
-.couple-sejajar{
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  align-items:center;
-  gap:25px;
-  margin-top:25px;
-}
-
-/* ANIMASI */
-.foto-kiri{
-  opacity:0;
-  animation:slideLeft .8s forwards;
-}
-
-.foto-kanan{
-  opacity:0;
-  animation:slideRight .8s forwards;
-  animation-delay:.3s;
-}
-
-/* RESPONSIVE BIAR TETAP RAPI */
-@media(max-width:400px){
-  .foto-besar{
-    width:75px;
-    height:75px;
-  }
-}
-
 </style>
-
-
-
-
-
-
-
-
-
 </head>
 
 <body>
@@ -686,32 +577,10 @@ textarea, input{
 <div class="bg"></div>
 <div class="content fade">
 
-<span>Mohon Doa Restu</span>
-
-<span>
-Semoga kami diberikan kesehatan, kelancaran, dan kemudahan dalam menjalankan ibadah haji,
-serta menjadi haji yang mabrur dan mabruroh.
-</span>
-
-<span>
-Kami juga memohon doa agar senantiasa diberikan keselamatan
-hingga kembali ke tanah air dengan penuh keberkahan.
-</span>
-
-  
 <span>Merupakan suatu kehormatan dan kebahagiaan kami, apabila Bapak/Ibu/Saudara/i
 berkenan hadir pada acara kami.</span> 
 <span>Atas kehadiran dan doa Bapak/Ibu/Saudara/i kami ucapkan terima kasih.</span>
 
-
-<!-- FOTO SEJAJAR -->
-<div class="couple-sejajar">
-  <img src="foto1.jpg" class="foto-besar foto-kiri">
-  <img src="foto2.jpg" class="foto-besar foto-kanan">
-</div>
-  
-
-  
 </div>
 </div>
   
@@ -727,39 +596,10 @@ berkenan hadir pada acara kami.</span>
 <div class="swiper-slide">
 <div class="bg"></div>
 <div class="content fade">
-
-<h2>Kirim Ucapan & Konfirmasi</h2>
-
-<form id="formUcapan">
-
-  <textarea placeholder="Tulis ucapan..." required></textarea>
-
-  <input type="text" placeholder="Nama*" required>
-
-  <!-- KEHADIRAN -->
-  <div class="kehadiran">
-    <label>KEHADIRAN</label>
-
-    <div class="radio-group">
-      <label>
-        <input type="radio" name="hadir" value="Hadir" required>
-        Saya akan hadir
-      </label>
-
-      <label>
-        <input type="radio" name="hadir" value="Tidak Hadir">
-        Maaf belum bisa hadir
-      </label>
-    </div>
-  </div>
-
-  <button type="submit" class="btn-kirim">Send</button>
-
-</form>
-
-<!-- LIST UCAPAN -->
-<div id="listUcapan"></div>
-  
+<span>Konfirmasi Kehadiran</span>
+<button class="btn" onclick="wa()">WhatsApp</button>
+</div>
+</div>
 
 </div>
 </div>
@@ -841,52 +681,6 @@ document.getElementById("menit").innerText = menit;
 document.getElementById("detik").innerText = detik;
 },1000);
 
-
-const form = document.getElementById("formUcapan");
-const list = document.getElementById("listUcapan");
-
-// LOAD DATA SAAT PAGE DIBUKA
-let dataUcapan = JSON.parse(localStorage.getItem("ucapan")) || [];
-
-renderUcapan();
-
-function renderUcapan(){
-  list.innerHTML = "";
-  dataUcapan.slice().reverse().forEach(item => {
-    tampilkan(item.nama, item.hadir, item.pesan);
-  });
-}
-
-// TAMPILKAN KE HTML
-function tampilkan(nama, hadir, pesan){
-  const div = document.createElement("div");
-  div.classList.add("ucapan-item");
-
-  div.innerHTML = `
-    <strong>${nama}</strong><br>
-    <small>${hadir}</small><br>
-    <p>${pesan}</p>
-  `;
-
-  list.appendChild(div);
-}
-
-// SUBMIT
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const pesan = form.querySelector("textarea").value;
-  const nama = form.querySelector("input[type='text']").value;
-  const hadir = form.querySelector("input[name='hadir']:checked").value;
-
-  const item = {nama, hadir, pesan};
-
-  dataUcapan.push(item);
-  localStorage.setItem("ucapan", JSON.stringify(dataUcapan));
-
-  renderUcapan();
-  form.reset();
-});
 
   
 </script>
