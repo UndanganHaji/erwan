@@ -17,7 +17,7 @@
 html, body{
   width:100%;
   height:100%;
-  overflow:hidden;
+  overflow-x:hidden; /* ⬅️ hanya horizontal */
   background:#000;
   font-family:Poppins,sans-serif;
 }
@@ -273,7 +273,7 @@ html, body{
 .nav{
   position:fixed;
   bottom:0;
-  left:50%;
+  left:0;
   transform:translateX(-50%);
   width:100vw;
   height:70px;
@@ -862,6 +862,33 @@ document.getElementById("detik").innerText = detik;
 const form = document.getElementById("formUcapan");
 const list = document.getElementById("listUcapan");
 
+// LOAD DATA SAAT PAGE DIBUKA
+let dataUcapan = JSON.parse(localStorage.getItem("ucapan")) || [];
+
+renderUcapan();
+
+function renderUcapan(){
+  list.innerHTML = "";
+  dataUcapan.slice().reverse().forEach(item => {
+    tampilkan(item.nama, item.hadir, item.pesan);
+  });
+}
+
+// TAMPILKAN KE HTML
+function tampilkan(nama, hadir, pesan){
+  const div = document.createElement("div");
+  div.classList.add("ucapan-item");
+
+  div.innerHTML = `
+    <strong>${nama}</strong><br>
+    <small>${hadir}</small><br>
+    <p>${pesan}</p>
+  `;
+
+  list.appendChild(div);
+}
+
+// SUBMIT
 form.addEventListener("submit", function(e){
   e.preventDefault();
 
@@ -869,17 +896,12 @@ form.addEventListener("submit", function(e){
   const nama = form.querySelector("input[type='text']").value;
   const hadir = form.querySelector("input[name='hadir']:checked").value;
 
-  const item = document.createElement("div");
-  item.classList.add("ucapan-item");
+  const item = {nama, hadir, pesan};
 
-  item.innerHTML = `
-    <strong>${nama}</strong><br>
-    <small>${hadir}</small><br>
-    <p>${pesan}</p>
-  `;
+  dataUcapan.push(item);
+  localStorage.setItem("ucapan", JSON.stringify(dataUcapan));
 
-  list.prepend(item);
-
+  renderUcapan();
   form.reset();
 });
 
