@@ -484,7 +484,17 @@ html, body{
   transform:translateX(10px);
 }
 
+.foto-opening{
+  width:140px;
+  height:auto;
+  margin-bottom:15px;
 
+  /* biar transparan PNG lebih hidup */
+  filter:drop-shadow(0 5px 15px rgba(0,0,0,.6))
+         drop-shadow(0 0 10px rgba(255,215,0,.4));
+
+  animation:fadeUp 1s ease;
+}  
 
   
 </style>
@@ -497,6 +507,9 @@ html, body{
   <div class="overlay"></div>
 
   <div class="top-text">
+    <!-- FOTO TAMBAHAN -->
+    <img src="foto4.png" class="foto-opening">
+
     <p class="small">Walimatus Safar Haji</p>
     <h1>Bapak & Ibu Erwan</h1>
   </div>
